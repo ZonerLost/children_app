@@ -1,0 +1,55 @@
+import 'package:flutter/material.dart';
+
+import '../config/theme/theme_controller.dart';
+
+// Static dark palette (call these when you need a fixed dark-mode color)
+const Color kPrimaryColorDark = Color(0xFF0B1220);
+const Color kSecondaryColorDark = Color(0xff610F90);
+const Color kTertiaryColorDark = Color(0xFFFFFFFF);
+const Color kQuaternaryColorDark = Color(0xFFAC9DB9);
+const Color kBlackColorDark = Color(0xFF0D0118);
+const Color kFillColorDark = Color(0xFF311B45);
+const Color kHintColorDark = Color(0xFFAC9DB9);
+const Color kBorderColorDark = Color(0xFFD5A6FF);
+const Color kBorderColor2Dark = Color(0xFF6F5F79);
+const Color kGreyColorDark = Color(0xFF0D1114);
+const Color kGreyColor2Dark = Color(0xFF111216);
+const Color kGreyColor3Dark = Color(0xFFCCCCCC);
+const Color kGreyColor4Dark = Color(0xFF0E1114);
+const Color kGreyColor5Dark = Color(0xff311B45);
+const Color kGreenColor2Dark = Color(0xFF9A7C00);
+const Color kRedColorDark = Color(0xFFFF6B6B);
+const Color kOrangeColorDark = Color(0xff610F90);
+const Color kGreenColorDark = Color(0xFF2EA43A);
+const Color kDarkGreenColorDark = Color(0xFF3F5F0C);
+const Color kDarkPurpleColorDark = Color(0xFF8A44C7);
+const Color kPurpleColorDark = Color(0xFFB59CFF);
+const Color kPurpleColorDark2 = Color(0xFF9071FE);
+const Color kLightPinkColorDark = Color(0xFF2A0E0E);
+const Color kLightPinkColor2Dark = Color(0xFF3A1515);
+
+Color get kPrimaryColor => ThemeController.to.primaryColor.value;
+Color get kSecondaryColor => ThemeController.to.secondaryColor.value;
+Color get kTertiaryColor => ThemeController.to.tertiaryColor.value;
+Color get kQuaternaryColor => ThemeController.to.quaternaryColor.value;
+Color get kBlackColor => ThemeController.to.blackColor.value;
+Color get kFillColor => ThemeController.to.fillColor.value;
+Color get kHintColor => ThemeController.to.hintColor.value;
+Color get kBorderColor => ThemeController.to.borderColor.value;
+Color get kBorderColor2 => ThemeController.to.borderColor2.value;
+Color get kGreyColor => ThemeController.to.greyColor.value;
+Color get kGreyColor2 => ThemeController.to.greyColor2.value;
+Color get kGreyColor3 => ThemeController.to.greyColor3.value;
+Color get kGreyColor4 => ThemeController.to.greyColor4.value;
+Color get kGreyColor5 => ThemeController.to.greyColor5.value;
+Color get kGreenColor2 => ThemeController.to.greenColor2.value;
+Color get kRedColor => ThemeController.to.redColor.value;
+Color get kOrangeColor => ThemeController.to.orangeColor.value;
+Color get kGreenColor => ThemeController.to.greenColor.value;
+Color get kDarkGreenColor => ThemeController.to.darkGreenColor.value;
+Color get kDarkPurpleColor => ThemeController.to.darkPurpleColor.value;
+Color get kPurpleColor => ThemeController.to.purpleColor.value;
+Color get kLightPinkColor => ThemeController.to.lightPinkColor.value;
+Color get kLightPinkColor2 => ThemeController.to.lightPinkColor2.value;
+const kWhiteColor = Color(0xFFFFFFFF);
+const kSelectedDarkColor = Color(0xFFDC9FFF);

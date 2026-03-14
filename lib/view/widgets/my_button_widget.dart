@@ -15,12 +15,13 @@ class MyButton extends StatelessWidget {
     this.customChild,
     this.bgColor,
     this.textColor,
+    this.width,
     this.disabled = false,
   });
 
   final String buttonText;
   final VoidCallback onTap;
-  double? height, textSize, radius;
+  double? height, width, textSize, radius;
   FontWeight? weight;
   Widget? customChild;
   Color? bgColor, textColor;
@@ -32,8 +33,9 @@ class MyButton extends StatelessWidget {
       opacity: disabled ? 0.5 : 1.0,
       child: Container(
         height: height,
+        width: width ?? null,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(radius ?? 16),
+          borderRadius: BorderRadius.circular(radius ?? 8),
           color: bgColor ?? kSecondaryColor,
         ),
         child: Material(
@@ -46,7 +48,7 @@ class MyButton extends StatelessWidget {
             highlightColor: disabled
                 ? Colors.transparent
                 : kPrimaryColor.withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(radius ?? 16),
+            borderRadius: BorderRadius.circular(radius ?? 8),
             child:
                 customChild ??
                 Center(
@@ -105,7 +107,7 @@ class MyBorderButton extends StatelessWidget {
     return Container(
       height: height,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(radius ?? 50),
+        borderRadius: BorderRadius.circular(radius ?? 8),
         border: Border.all(color: effectiveBorder, width: 1),
         color: bgColor ?? Colors.transparent,
       ),
@@ -115,7 +117,7 @@ class MyBorderButton extends StatelessWidget {
           onTap: onTap,
           splashColor: effectiveSplash,
           highlightColor: effectiveHighlight,
-          borderRadius: BorderRadius.circular(radius ?? 50),
+          borderRadius: BorderRadius.circular(radius ?? 8),
           child:
               customChild ??
               Center(

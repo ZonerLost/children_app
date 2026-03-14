@@ -7,11 +7,12 @@ import 'package:story_spark/constants/app_images.dart';
 import 'package:story_spark/constants/app_sizes.dart';
 import 'package:story_spark/main.dart';
 import 'package:story_spark/view/screens/achievements/achievements.dart';
-import 'package:story_spark/view/screens/building_books/building_book.dart';
-import 'package:story_spark/view/screens/home/home.dart';
-import 'package:story_spark/view/screens/parent_mode/child_dashboard.dart';
-import 'package:story_spark/view/screens/parent_mode/parent_mode.dart';
-import 'package:story_spark/view/screens/prosody_coach/prosody_coach.dart';
+import 'package:story_spark/view/screens/bottom_nav_bar/building_books/building_book.dart';
+import 'package:story_spark/view/screens/bottom_nav_bar/home/home.dart';
+import 'package:story_spark/view/screens/bottom_nav_bar/my_library/my_library.dart';
+import 'package:story_spark/view/screens/child/child_dashboard/child_dashboard.dart';
+import 'package:story_spark/view/screens/parent/parent_dashboard.dart';
+import 'package:story_spark/view/screens/bottom_nav_bar/prosody_coach/prosody_coach.dart';
 import 'package:story_spark/view/screens/settings/settings.dart';
 import 'package:story_spark/view/widgets/common_image_view_widget.dart';
 import 'package:story_spark/view/widgets/custom_app_bar.dart';
@@ -37,6 +38,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> _items = [
       {'icon': Assets.imagesHome, 'label': 'Home'},
+      {'icon': Assets.imagesMyLibrary, 'label': 'My Library'},
       {'icon': Assets.imagesCoach, 'label': 'Coach'},
       {'icon': Assets.imagesBookBuilding, 'label': 'Book Building'},
       {'icon': Assets.imagesRewards, 'label': 'Rewards'},
@@ -44,6 +46,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
     final List<Widget> _screens = [
       Home(),
+      MyLibrary(),
       ProsodyCoach(),
       BuildingBook(),
       Achievements(),
@@ -55,30 +58,18 @@ class _BottomNavBarState extends State<BottomNavBar> {
         child: Scaffold(
           appBar: _currentIndex == 0
               ? simpleAppBar(
-                  haveLeading: isParentMode ? false : true,
-                  bgColor: kPrimaryColor,
-                  leadingWidget: isParentMode
-                      ? null
-                      : Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                Get.to(() => Settings());
-                              },
-                              child: CommonImageView(
-                                height: 36,
-                                width: 36,
-                                radius: 100,
-                                url: dummyImg,
-                              ),
-                            ),
-                          ],
-                        ),
+                  haveLeading: false,
                   title: isParentMode ? 'Parents Dashboard' : 'Story Spark',
                   centerTitle: false,
                   actions: [
+                    Center(
+                      child: GestureDetector(
+                        onTap: () {
+                          Get.to(() => Settings());
+                        },
+                        child: Image.asset(Assets.imagesSettings, height: 24),
+                      ),
+                    ),
                     Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -120,11 +111,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
                   ],
                 )
               : null,
-          extendBodyBehindAppBar: true,
-          extendBody: true,
+          // extendBodyBehindAppBar: true,
+          // extendBody: true,
           key: _scaffoldKey,
           resizeToAvoidBottomInset: false,
-          body: isParentMode ? ParentMode() : _screens[_currentIndex],
+          body: isParentMode ? ParentDashboard() : _screens[_currentIndex],
           bottomNavigationBar: isParentMode
               ? null
               : _buildNavBar(_items, isDark),

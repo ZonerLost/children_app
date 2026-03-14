@@ -17,39 +17,55 @@ class AiSuggested extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainer(
       child: Scaffold(
-        appBar: simpleAppBar(title: 'Al Suggested'),
+        appBar: simpleAppBar(title: 'Al Suggested', centerTitle: false),
         body: ListView(
           shrinkWrap: true,
-          padding: AppSizes.DEFAULT,
+          padding: AppSizes.VERTICAL,
           physics: BouncingScrollPhysics(),
           children: [
-            MyTextField(
-              hintText: 'Write here what you want?',
-              maxLines: 5,
-              radius: 10,
-              marginBottom: 30,
+            Padding(
+              padding: AppSizes.HORIZONTAL,
+              child: MyTextField(
+                hintText: 'Write here what you want?',
+                maxLines: 5,
+                radius: 10,
+                marginBottom: 30,
+              ),
             ),
             MyText(
+              paddingLeft: 20,
               text: 'Recommended',
               size: 20,
               weight: FontWeight.w700,
               fontFamily: AppFonts.balsamiqSans,
               paddingBottom: 12,
             ),
-            GridView.builder(
-              shrinkWrap: true,
-              padding: AppSizes.ZERO,
-              physics: BouncingScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                mainAxisExtent: 160,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
+            SizedBox(
+              height: 180,
+              child: ListView.separated(
+                separatorBuilder: (context, index) => SizedBox(width: 12),
+                padding: AppSizes.HORIZONTAL,
+                physics: BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return StoryThumbnail(radius: 180);
+                },
               ),
-              itemCount: 4,
-              itemBuilder: (BuildContext context, int index) {
-                return StoryThumbnail(radius: Get.width);
-              },
+            ),
+            SizedBox(height: 16),
+            SizedBox(
+              height: 180,
+              child: ListView.separated(
+                separatorBuilder: (context, index) => SizedBox(width: 12),
+                padding: AppSizes.HORIZONTAL,
+                physics: BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return StoryThumbnail(radius: 180);
+                },
+              ),
             ),
           ],
         ),

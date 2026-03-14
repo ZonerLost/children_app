@@ -9,6 +9,7 @@ AppBar simpleAppBar({
   bool haveLeading = true,
   String? title,
   Widget? leadingWidget,
+  Widget? titleWidget,
   bool? centerTitle = true,
   List<Widget>? actions,
   Color? bgColor,
@@ -35,13 +36,15 @@ AppBar simpleAppBar({
                 ],
               )
         : null,
-    title: MyText(
-      text: title ?? '',
-      size: 20,
-      fontFamily: AppFonts.balsamiqSans,
-      color: contentColor ?? kTertiaryColor,
-      weight: FontWeight.w700,
-    ),
+    title:
+        titleWidget ??
+        MyText(
+          text: title ?? '',
+          size: 20,
+          fontFamily: AppFonts.balsamiqSans,
+          color: contentColor ?? kTertiaryColor,
+          weight: FontWeight.w700,
+        ),
     actions: actions,
     elevation: 0,
   );

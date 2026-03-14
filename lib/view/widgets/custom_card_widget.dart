@@ -12,8 +12,32 @@ class CustomCard extends StatelessWidget {
       padding: EdgeInsets.all(padding ?? 14),
       decoration: BoxDecoration(
         color: kGreyColor5,
-        border: Border.all(color: kBorderColor, width: 1.0),
-        borderRadius: BorderRadius.circular(radius ?? 12),
+        // color: Color(0xff311B45),
+        borderRadius: BorderRadius.circular(radius ?? 14),
+      ),
+      child: child,
+    );
+  }
+}
+
+class CustomCard2 extends StatelessWidget {
+  const CustomCard2({
+    super.key,
+    this.padding,
+    this.radius,
+    required this.child,
+  });
+  final double? padding;
+  final double? radius;
+  final Widget child;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(padding ?? 14),
+      decoration: BoxDecoration(
+        color: Color(0xff190928),
+        // color: Color(0xff311B45),
+        borderRadius: BorderRadius.circular(radius ?? 14),
       ),
       child: child,
     );

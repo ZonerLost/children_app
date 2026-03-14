@@ -20,6 +20,7 @@ class MyTextField extends StatelessWidget {
     this.onTap,
     this.marginBottom,
     this.radius = 8,
+    this.fillColor,
   }) : super(key: key);
 
   final String? labelText, hintText;
@@ -32,6 +33,7 @@ class MyTextField extends StatelessWidget {
   final double? marginBottom;
   final Widget? prefix, suffix;
   final VoidCallback? onTap;
+  final Color? fillColor;
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +70,7 @@ class MyTextField extends StatelessWidget {
             ),
             decoration: InputDecoration(
               filled: true,
-              fillColor: kFillColor,
+              fillColor: fillColor ?? kFillColor,
               prefixIcon: prefix != null
                   ? Obx(() {
                       final isDark = ThemeController.to.isDarkMode.value;

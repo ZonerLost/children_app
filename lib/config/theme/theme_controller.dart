@@ -17,7 +17,7 @@ class ThemeController extends GetxController {
   final Rx<Color> greyColor2 = const Color(0xffF7F7F7).obs;
   final Rx<Color> greyColor3 = const Color(0xff2C2C2C).obs;
   final Rx<Color> greyColor4 = const Color(0xffF3F4F6).obs;
-  final Rx<Color> greyColor5 = const Color(0xffEBEBEB).obs;
+  final Rx<Color> greyColor5 = const Color(0xff3D2156).obs;
   final Rx<Color> greenColor2 = const Color(0xffB89F00).obs;
   final Rx<Color> redColor = const Color(0xffE50000).obs;
   final Rx<Color> orangeColor = const Color(0xffFC6A03).obs;
@@ -35,6 +35,7 @@ class ThemeController extends GetxController {
     tertiaryColor.value = const Color(0xFFFFFFFF);
     quaternaryColor.value = const Color(0xFFAC9DB9);
     blackColor.value = const Color(0xFF0D0118);
+    // fillColor.value = const Color(0xFF311B45);
     fillColor.value = const Color(0xFF311B45);
     hintColor.value = const Color(0xFFAC9DB9);
     borderColor.value = Color(0xFFD5A6FF).withValues(alpha: 0.4);
@@ -43,6 +44,7 @@ class ThemeController extends GetxController {
     greyColor2.value = const Color(0xFF111216);
     greyColor3.value = const Color(0xFFCCCCCC);
     greyColor4.value = const Color(0xFF0E1114);
+    // greyColor5.value = const Color(0xff311B45);
     greyColor5.value = const Color(0xff311B45);
     greenColor2.value = const Color(0xFF9A7C00);
     redColor.value = const Color(0xFFFF6B6B);

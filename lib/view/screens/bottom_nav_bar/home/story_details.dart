@@ -8,11 +8,13 @@ import 'package:story_spark/constants/app_fonts.dart';
 import 'package:story_spark/constants/app_images.dart';
 import 'package:story_spark/constants/app_sizes.dart';
 import 'package:story_spark/main.dart';
-import 'package:story_spark/view/screens/home/start_reading.dart';
+import 'package:story_spark/view/screens/bottom_nav_bar/home/start_reading.dart';
 import 'package:story_spark/view/widgets/common_image_view_widget.dart';
 import 'package:story_spark/view/widgets/custom_app_bar.dart';
+import 'package:story_spark/view/widgets/custom_check_box_widget.dart';
 import 'package:story_spark/view/widgets/custom_container_widget.dart';
 import 'package:story_spark/view/widgets/my_button_widget.dart';
+import 'package:story_spark/view/widgets/my_text_field_widget.dart';
 import 'package:story_spark/view/widgets/my_text_widget.dart';
 import 'package:story_spark/view/widgets/story_thumbnail_widget.dart';
 
@@ -46,26 +48,16 @@ class StoryDetails extends StatelessWidget {
                       text: 'The Magical Treehouse',
                       paddingTop: 20,
                       weight: FontWeight.w700,
-                      paddingBottom: 16,
+                      paddingBottom: 10,
                       size: 20,
                       fontFamily: AppFonts.balsamiqSans,
                       textAlign: TextAlign.center,
                     ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: MyText(
-                            text: 'by Luna & Stardust',
-                            size: 16,
-                            color: kQuaternaryColor,
-                          ),
-                        ),
-                        MyText(
-                          text: 'paragraph 23',
-                          size: 12,
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ],
+                    MyText(
+                      text: 'Author: Luna & Stardust\nCompany: Abc',
+                      textAlign: TextAlign.center,
+                      size: 16,
+                      color: kQuaternaryColor,
                     ),
                     SizedBox(height: 20),
                     Row(
@@ -96,17 +88,9 @@ class StoryDetails extends StatelessWidget {
                           'Join Leo and Mia on an enchanting journey to discover a hidden treehouse that whispers ancient secrets. Every page unveils a new mystery and a magical friend, leading them to uncover the true meaning of friendship and courage.',
                       size: 16,
                       color: kQuaternaryColor,
-                      paddingBottom: 16,
-                    ),
-                    MyText(
-                      text: 'Read Book',
-                      color: kOrangeColor,
-                      size: 14,
-                      weight: FontWeight.w500,
-                      fontStyle: FontStyle.italic,
-                      textAlign: TextAlign.center,
                       paddingBottom: 20,
                     ),
+
                     Container(
                       padding: EdgeInsets.all(12),
                       decoration: BoxDecoration(
@@ -169,29 +153,85 @@ class StoryDetails extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SliderTheme(
-                            data: SliderTheme.of(
-                              context,
-                            ).copyWith(trackShape: CustomTrackShape()),
-                            child: Slider(
-                              value: 0.3,
-                              onChanged: (value) {},
-                              thumbColor: kWhiteColor,
-                              activeColor: kSecondaryColor,
-                              inactiveColor: kWhiteColor,
+                          SizedBox(height: 12),
+                          MyTextField(
+                            fillColor: isDark ? Color(0xff3F2C51) : null,
+                            prefix: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  Assets.imagesPlayIcon,
+                                  height: 20,
+                                  color: isDark ? kWhiteColor : null,
+                                ),
+                              ],
                             ),
+                            suffix: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  Assets.imagesDownArrow,
+                                  height: 16,
+                                  color: isDark ? kWhiteColor : null,
+                                ),
+                              ],
+                            ),
+                            isReadOnly: true,
+                            hintText: 'Narrator 1',
+                            marginBottom: 0,
                           ),
-                          MyText(
-                            text: 'Hear a snippet of our magical voice acting.',
-                            size: 14,
-                            color: kQuaternaryColor,
+                          SizedBox(height: 12),
+                          Row(
+                            spacing: 6,
+                            children: List.generate(2, (index) {
+                              return Expanded(
+                                child: Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 12,
+                                    vertical: 6,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: kFillColor,
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: Row(
+                                    spacing: 6,
+                                    children: [
+                                      CustomCheckBox(
+                                        isActive: index == 0,
+                                        onTap: () {},
+                                        radius: 20,
+                                        circularRadius: 100,
+                                      ),
+                                      Expanded(
+                                        child: MyText(
+                                          text: index == 0
+                                              ? 'Single Voice'
+                                              : 'Multiple Voices',
+                                          size: 12,
+                                          weight: FontWeight.w500,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }),
+                          ),
+                          SizedBox(height: 16),
+                          MyButton(
+                            radius: 8,
+                            height: 40,
+                            textSize: 14,
+                            buttonText: 'Read With Prosody Coach',
+                            onTap: () {},
                           ),
                         ],
                       ),
                     ),
                     MyText(
                       paddingTop: 20,
-                      text: 'Illustration Previews',
+                      text: 'Related Books',
                       size: 20,
                       weight: FontWeight.w700,
                       fontFamily: AppFonts.balsamiqSans,

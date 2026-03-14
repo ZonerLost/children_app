@@ -3,7 +3,7 @@ import 'package:story_spark/constants/app_fonts.dart';
 import 'package:story_spark/constants/app_images.dart';
 import 'package:story_spark/constants/app_sizes.dart';
 import 'package:story_spark/main.dart';
-import 'package:story_spark/view/screens/building_books/book_complete.dart';
+import 'package:story_spark/view/screens/bottom_nav_bar/building_books/book_complete.dart';
 import 'package:story_spark/view/widgets/common_image_view_widget.dart';
 import 'package:story_spark/view/widgets/custom_app_bar.dart';
 import 'package:story_spark/view/widgets/custom_container_widget.dart';
@@ -21,7 +21,7 @@ class AiWritingAssistant extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainer(
       child: Scaffold(
-        appBar: simpleAppBar(title: 'AI Writing Assistant'),
+        appBar: simpleAppBar(title: 'Finn’s Writing Coach'),
         body: ListView(
           shrinkWrap: true,
           padding: AppSizes.DEFAULT,
@@ -37,7 +37,7 @@ class AiWritingAssistant extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   MyText(
-                    text: 'Tell the AI what story part you need!',
+                    text: 'Tell the Finn what story part you need!',
                     size: 17,
                     fontFamily: AppFonts.balsamiqSans,
                     weight: FontWeight.w700,
@@ -87,7 +87,7 @@ class AiWritingAssistant extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   MyText(
-                    text: 'Here\'s what the AI wrote! You can edit it too.',
+                    text: 'Here\'s what the Finn wrote! You can edit it too..',
                     size: 17,
                     fontFamily: AppFonts.balsamiqSans,
                     weight: FontWeight.w700,
@@ -113,7 +113,7 @@ class AiWritingAssistant extends StatelessWidget {
                               Image.asset(Assets.imagesEdit, height: 14),
                               SizedBox(width: 6),
                               MyText(
-                                text: 'Edit Prompt',
+                                text: 'Make Edits',
                                 size: 14,
                                 paddingRight: 4,
                               ),

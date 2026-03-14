@@ -3,8 +3,8 @@ import 'package:story_spark/constants/app_fonts.dart';
 import 'package:story_spark/constants/app_images.dart';
 import 'package:story_spark/constants/app_sizes.dart';
 import 'package:story_spark/main.dart';
-import 'package:story_spark/view/screens/building_books/ai_writing_assistant.dart';
-import 'package:story_spark/view/screens/building_books/edit_story.dart';
+import 'package:story_spark/view/screens/bottom_nav_bar/building_books/ai_writing_assistant.dart';
+import 'package:story_spark/view/screens/bottom_nav_bar/building_books/edit_story.dart';
 import 'package:story_spark/view/widgets/common_image_view_widget.dart';
 import 'package:story_spark/view/widgets/custom_app_bar.dart';
 import 'package:story_spark/view/widgets/custom_container_widget.dart';
@@ -107,7 +107,7 @@ class BuildingBook extends StatelessWidget {
                             textSize: 14,
                             radius: 8,
                             bgColor: kTertiaryColor.withValues(alpha: 0.1),
-                            buttonText: 'Edit Details',
+                            buttonText: 'Edit',
                             onTap: () {},
                             height: 40,
                           ),
@@ -133,7 +133,7 @@ class BuildingBook extends StatelessWidget {
                         Image.asset(Assets.imagesAiWriting, height: 24),
                         Expanded(
                           child: MyText(
-                            text: 'AI Writing Assistant',
+                            text: 'Finn’s Writing Coach',
                             size: 16,
                             fontFamily: AppFonts.balsamiqSans,
                             weight: FontWeight.w700,
@@ -143,7 +143,7 @@ class BuildingBook extends StatelessWidget {
                     ),
                     MyText(
                       text:
-                          'Describe what you want to write and our AI will help you craft perfect content.',
+                          'Describe what you want to write and our Mascot will help you craft perfect content.',
                       size: 14,
                       paddingTop: 6,
                       paddingBottom: 10,
@@ -157,7 +157,7 @@ class BuildingBook extends StatelessWidget {
                     MyButton(
                       textSize: 14,
                       bgColor: kOrangeColor,
-                      buttonText: 'Generate Ai Content',
+                      buttonText: 'Generate with Finn',
                       onTap: () {
                         Get.to(() => AiWritingAssistant());
                       },

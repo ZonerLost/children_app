@@ -3,6 +3,7 @@ import 'package:story_spark/constants/app_fonts.dart';
 import 'package:story_spark/constants/app_images.dart';
 import 'package:story_spark/constants/app_sizes.dart';
 import 'package:story_spark/view/screens/ai_suggested/ai_suggested.dart';
+import 'package:story_spark/view/widgets/custom_card_widget.dart';
 import 'package:story_spark/view/widgets/my_text_field_widget.dart';
 import 'package:story_spark/view/widgets/my_text_widget.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,6 @@ class _HomeState extends State<Home> {
         padding: AppSizes.VERTICAL,
         physics: BouncingScrollPhysics(),
         children: [
-          SizedBox(height: 75),
           Container(
             padding: EdgeInsets.all(20),
             height: 240,
@@ -164,10 +164,10 @@ class _HomeState extends State<Home> {
                   child: Row(
                     spacing: 10,
                     children: [
-                      Image.asset(Assets.imagesMetaAi, height: 20),
+                      Image.asset(Assets.imagesMetaWolf, height: 32),
                       Expanded(
                         child: MyText(
-                          text: 'Meta AI your best friend',
+                          text: 'Meta Mascot your best friend',
                           size: 12,
                           color: kWhiteColor,
                           weight: FontWeight.w600,
@@ -210,7 +210,11 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 ),
-                _HeadingTile(title: 'Because you read', onTap: () {}),
+                _HeadingTile(
+                  title: 'Because instead of Book',
+                  onTap: () {},
+                  trailingText: 'Snow White',
+                ),
                 SizedBox(
                   height: 120,
                   child: ListView.separated(
@@ -224,9 +228,9 @@ class _HomeState extends State<Home> {
                     },
                   ),
                 ),
-                _HeadingTile(title: 'Trending in class', onTap: () {}),
+                _HeadingTile(title: 'Recommended Books', onTap: () {}),
                 SizedBox(
-                  height: 180,
+                  height: 120,
                   child: ListView.separated(
                     separatorBuilder: (context, index) => SizedBox(width: 12),
                     padding: AppSizes.HORIZONTAL,
@@ -234,10 +238,89 @@ class _HomeState extends State<Home> {
                     scrollDirection: Axis.horizontal,
                     itemCount: 5,
                     itemBuilder: (context, index) {
-                      return StoryThumbnail(radius: 180);
+                      return StoryThumbnail();
                     },
                   ),
                 ),
+                SizedBox(height: 24),
+                Padding(
+                  padding: AppSizes.HORIZONTAL,
+                  child: CustomCard(
+                    radius: 16,
+                    padding: 16,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        MyText(
+                          text: '🛍️ Shop Coming Soon!',
+                          size: 18,
+                          textAlign: TextAlign.center,
+                          weight: FontWeight.w700,
+                          paddingBottom: 8,
+                        ),
+                        RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: kQuaternaryColor,
+                              fontFamily: AppFonts.nunito,
+                            ),
+                            children: [
+                              TextSpan(
+                                text:
+                                    'Great things are on the way! Keep collecting your coins soon you’ll be able to use them to get cool items',
+                              ),
+                              TextSpan(
+                                text: ' and fun surprises!',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w600,
+                                  color: kTertiaryColor,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 16),
+                        MyText(
+                          text:
+                              'Here’s a sneak peek of what you’ll be able to unlock:',
+                          size: 14,
+                          weight: FontWeight.w600,
+                          paddingBottom: 12,
+                        ),
+                        Column(
+                          spacing: 6,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            MyText(
+                              text: '✨ Fun character outfits & accessories',
+                              size: 13,
+                            ),
+                            MyText(
+                              text: '🎒 Special themed backpacks',
+                              size: 13,
+                            ),
+                            MyText(
+                              text: '🎨 Colourful stickers & badges',
+                              size: 13,
+                            ),
+                            MyText(
+                              text: '🧩 Mini games and power-ups',
+                              size: 13,
+                            ),
+                            MyText(text: '📚 Bonus story packs', size: 13),
+                            MyText(
+                              text: '🎵 Sound effects & fun animations',
+                              size: 13,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
                 _HeadingTile(title: 'Teacher’s Picks', onTap: () {}),
                 SizedBox(
                   height: 120,
@@ -266,6 +349,20 @@ class _HomeState extends State<Home> {
                     },
                   ),
                 ),
+                _HeadingTile(title: 'Trending in class', onTap: () {}),
+                SizedBox(
+                  height: 150,
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) => SizedBox(width: 12),
+                    padding: AppSizes.HORIZONTAL,
+                    physics: BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    itemCount: 5,
+                    itemBuilder: (context, index) {
+                      return StoryThumbnail(radius: 150);
+                    },
+                  ),
+                ),
                 SizedBox(height: 100),
               ],
             ),
@@ -277,8 +374,13 @@ class _HomeState extends State<Home> {
 }
 
 class _HeadingTile extends StatelessWidget {
-  const _HeadingTile({required this.title, required this.onTap});
+  const _HeadingTile({
+    required this.title,
+    required this.onTap,
+    this.trailingText,
+  });
   final String title;
+  final String? trailingText;
   final VoidCallback onTap;
 
   @override
@@ -297,7 +399,7 @@ class _HeadingTile extends StatelessWidget {
           ),
           MyText(
             onTap: onTap,
-            text: 'View all',
+            text: trailingText ?? 'View all',
             size: 12,
             fontFamily: AppFonts.balsamiqSans,
             color: kQuaternaryColor,

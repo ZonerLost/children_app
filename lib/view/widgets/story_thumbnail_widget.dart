@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 import 'package:story_spark/constants/app_colors.dart';
 import 'package:story_spark/main.dart';
-import 'package:story_spark/view/screens/home/story_details.dart';
+import 'package:story_spark/view/screens/bottom_nav_bar/home/story_details.dart';
 import 'package:story_spark/view/widgets/common_image_view_widget.dart';
 import 'package:story_spark/view/widgets/my_text_widget.dart';
 

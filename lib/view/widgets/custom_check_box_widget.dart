@@ -50,7 +50,7 @@ class CustomCheckBox extends StatelessWidget {
             : Icon(
                 Icons.check,
                 size: (radius == 24) ? 16 : 12,
-                color: kPrimaryColor,
+                color: kTertiaryColor,
               ),
       ),
     );

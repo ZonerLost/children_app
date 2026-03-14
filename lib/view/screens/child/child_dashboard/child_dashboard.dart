@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:story_spark/controller/app_mode_controller.dart';
+import 'package:story_spark/view/screens/child/child_dashboard/child_statistics.dart';
 import 'package:story_spark/view/screens/child/vocabulary/vocabulary.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:story_spark/config/theme/theme_controller.dart';
@@ -74,6 +75,31 @@ class ChildDashboard extends StatelessWidget {
             padding: AppSizes.VERTICAL,
             physics: BouncingScrollPhysics(),
             children: [
+              Padding(
+                padding: AppSizes.HORIZONTAL,
+                child: GestureDetector(
+                  onTap: () {
+                    Get.to(() => ChildStatistics());
+                  },
+                  child: CustomCard(
+                    radius: 16,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: MyText(
+                            text: 'Statistics',
+                            size: 20,
+                            weight: FontWeight.w600,
+                          ),
+                        ),
+                        Image.asset(Assets.imagesArrowNextIos, height: 24),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 16),
+
               Padding(
                 padding: AppSizes.HORIZONTAL,
                 child: CustomCard(
@@ -193,6 +219,7 @@ class ChildDashboard extends StatelessWidget {
                   ),
                 ),
               ),
+
               SizedBox(height: 16),
               Padding(
                 padding: AppSizes.HORIZONTAL,
@@ -233,6 +260,7 @@ class ChildDashboard extends StatelessWidget {
                   ),
                 ),
               ),
+
               SizedBox(height: 16),
               Padding(
                 padding: AppSizes.HORIZONTAL,

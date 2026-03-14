@@ -12,6 +12,7 @@ import 'package:story_spark/controller/app_mode_controller.dart';
 import 'package:story_spark/main.dart';
 import 'package:story_spark/view/screens/bottom_nav_bar/home/story_details.dart';
 import 'package:story_spark/view/screens/child/child_dashboard/child_dashboard.dart';
+import 'package:story_spark/view/screens/parent/family_journey.dart';
 import 'package:story_spark/view/screens/parent/parent_view_child_db.dart';
 import 'package:story_spark/view/widgets/common_image_view_widget.dart';
 import 'package:story_spark/view/widgets/custom_app_bar.dart';
@@ -300,6 +301,30 @@ class ParentDashboard extends StatelessWidget {
                       ],
                     ),
                   ],
+                ),
+              ),
+            ),
+            SizedBox(height: 16),
+            Padding(
+              padding: AppSizes.HORIZONTAL,
+              child: GestureDetector(
+                onTap: () {
+                  Get.to(() => FamilyJourney());
+                },
+                child: CustomCard(
+                  radius: 16,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: MyText(
+                          text: 'Family Journey',
+                          size: 18,
+                          weight: FontWeight.w600,
+                        ),
+                      ),
+                      Image.asset(Assets.imagesArrowNextIos, height: 24),
+                    ],
+                  ),
                 ),
               ),
             ),

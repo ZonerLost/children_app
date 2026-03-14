@@ -66,6 +66,10 @@ class Assets {
   /// assets/images/achieved.png
   static const String imagesAchieved = "assets/images/achieved.png";
 
+  /// Assets for imagesActivityRate
+  /// assets/images/activity_rate.png
+  static const String imagesActivityRate = "assets/images/activity_rate.png";
+
   /// Assets for imagesAdd
   /// assets/images/add.png
   static const String imagesAdd = "assets/images/add.png";
@@ -113,6 +117,10 @@ class Assets {
   /// Assets for imagesAll
   /// assets/images/all.png
   static const String imagesAll = "assets/images/all.png";
+
+  /// Assets for imagesAmazingStreak
+  /// assets/images/amazing_streak.png
+  static const String imagesAmazingStreak = "assets/images/amazing_streak.png";
 
   /// Assets for imagesAnimals
   /// assets/images/animals.png
@@ -370,9 +378,21 @@ class Assets {
   /// assets/images/connect_school.png
   static const String imagesConnectSchool = "assets/images/connect_school.png";
 
+  /// Assets for imagesConsistency
+  /// assets/images/consistency.png
+  static const String imagesConsistency = "assets/images/consistency.png";
+
   /// Assets for imagesContentFilters
   /// assets/images/content_filters.png
   static const String imagesContentFilters = "assets/images/content_filters.png";
+
+  /// Assets for imagesContinuedPractice
+  /// assets/images/continued_practice.png
+  static const String imagesContinuedPractice = "assets/images/continued_practice.png";
+
+  /// Assets for imagesCorrect
+  /// assets/images/correct.png
+  static const String imagesCorrect = "assets/images/correct.png";
 
   /// Assets for imagesCost
   /// assets/images/cost.png
@@ -381,6 +401,10 @@ class Assets {
   /// Assets for imagesCreatedMaleAvatar
   /// assets/images/created_male_avatar.png
   static const String imagesCreatedMaleAvatar = "assets/images/created_male_avatar.png";
+
+  /// Assets for imagesCup
+  /// assets/images/cup.png
+  static const String imagesCup = "assets/images/cup.png";
 
   /// Assets for imagesD1
   /// assets/images/d1.png
@@ -445,6 +469,10 @@ class Assets {
   /// Assets for imagesD9
   /// assets/images/d9.png
   static const String imagesD9 = "assets/images/d9.png";
+
+  /// Assets for imagesDMastCostly
+  /// assets/images/d_mast_costly.png
+  static const String imagesDMastCostly = "assets/images/d_mast_costly.png";
 
   /// Assets for imagesDarkThemeBg
   /// assets/images/dark_theme_bg.png
@@ -693,6 +721,10 @@ class Assets {
   /// Assets for imagesFantasticJob
   /// assets/images/fantastic_job.png
   static const String imagesFantasticJob = "assets/images/fantastic_job.png";
+
+  /// Assets for imagesFantasticPerformance
+  /// assets/images/fantastic_performance.png
+  static const String imagesFantasticPerformance = "assets/images/fantastic_performance.png";
 
   /// Assets for imagesFantasy
   /// assets/images/fantasy.png
@@ -1054,6 +1086,10 @@ class Assets {
   /// assets/images/logo.png
   static const String imagesLogo = "assets/images/logo.png";
 
+  /// Assets for imagesLongestSession
+  /// assets/images/longest_session.png
+  static const String imagesLongestSession = "assets/images/longest_session.png";
+
   /// Assets for imagesMEyeLeft
   /// assets/images/m_eye_left.png
   static const String imagesMEyeLeft = "assets/images/m_eye_left.png";
@@ -1074,6 +1110,10 @@ class Assets {
   /// assets/images/master_reader.png
   static const String imagesMasterReader = "assets/images/master_reader.png";
 
+  /// Assets for imagesMathAccuracy
+  /// assets/images/math_accuracy.png
+  static const String imagesMathAccuracy = "assets/images/math_accuracy.png";
+
   /// Assets for imagesMetaAi
   /// assets/images/meta_ai.png
   static const String imagesMetaAi = "assets/images/meta_ai.png";
@@ -1085,6 +1125,10 @@ class Assets {
   /// Assets for imagesMicOn
   /// assets/images/mic_on.png
   static const String imagesMicOn = "assets/images/mic_on.png";
+
+  /// Assets for imagesMilestoneAchieved
+  /// assets/images/milestone_achieved.png
+  static const String imagesMilestoneAchieved = "assets/images/milestone_achieved.png";
 
   /// Assets for imagesMinReadIcon
   /// assets/images/min_read_icon.png
@@ -1250,6 +1294,10 @@ class Assets {
   /// assets/images/pencil.png
   static const String imagesPencil = "assets/images/pencil.png";
 
+  /// Assets for imagesPersonalizedGrowth
+  /// assets/images/personalized_growth.png
+  static const String imagesPersonalizedGrowth = "assets/images/personalized_growth.png";
+
   /// Assets for imagesPlay
   /// assets/images/play.png
   static const String imagesPlay = "assets/images/play.png";
@@ -1270,6 +1318,10 @@ class Assets {
   /// assets/images/print_certificate.png
   static const String imagesPrintCertificate = "assets/images/print_certificate.png";
 
+  /// Assets for imagesPrintIcon
+  /// assets/images/print_icon.png
+  static const String imagesPrintIcon = "assets/images/print_icon.png";
+
   /// Assets for imagesPuzzels
   /// assets/images/puzzels.png
   static const String imagesPuzzels = "assets/images/puzzels.png";
@@ -1282,9 +1334,21 @@ class Assets {
   /// assets/images/quizes_completed.png
   static const String imagesQuizesCompleted = "assets/images/quizes_completed.png";
 
+  /// Assets for imagesReadingComprehension
+  /// assets/images/reading_comprehension.png
+  static const String imagesReadingComprehension = "assets/images/reading_comprehension.png";
+
   /// Assets for imagesReadingLevel
   /// assets/images/reading_level.png
   static const String imagesReadingLevel = "assets/images/reading_level.png";
+
+  /// Assets for imagesReadingTime
+  /// assets/images/reading_time.png
+  static const String imagesReadingTime = "assets/images/reading_time.png";
+
+  /// Assets for imagesReads
+  /// assets/images/reads.png
+  static const String imagesReads = "assets/images/reads.png";
 
   /// Assets for imagesRewards
   /// assets/images/rewards.png
@@ -1385,6 +1449,10 @@ class Assets {
   /// Assets for imagesSearch
   /// assets/images/search.png
   static const String imagesSearch = "assets/images/search.png";
+
+  /// Assets for imagesSessionAvg
+  /// assets/images/session_avg.png
+  static const String imagesSessionAvg = "assets/images/session_avg.png";
 
   /// Assets for imagesSettings
   /// assets/images/settings.png
@@ -1506,6 +1574,10 @@ class Assets {
   /// assets/images/total_pages.png
   static const String imagesTotalPages = "assets/images/total_pages.png";
 
+  /// Assets for imagesTotalReads
+  /// assets/images/total_reads.png
+  static const String imagesTotalReads = "assets/images/total_reads.png";
+
   /// Assets for imagesTrashIcon
   /// assets/images/trash_icon.png
   static const String imagesTrashIcon = "assets/images/trash_icon.png";
@@ -1530,6 +1602,10 @@ class Assets {
   /// assets/images/volume.png
   static const String imagesVolume = "assets/images/volume.png";
 
+  /// Assets for imagesWeeklyAvg
+  /// assets/images/weekly_avg.png
+  static const String imagesWeeklyAvg = "assets/images/weekly_avg.png";
+
   /// Assets for imagesWhispering
   /// assets/images/whispering.png
   static const String imagesWhispering = "assets/images/whispering.png";
@@ -1541,5 +1617,9 @@ class Assets {
   /// Assets for imagesWordsRead
   /// assets/images/words_read.png
   static const String imagesWordsRead = "assets/images/words_read.png";
+
+  /// Assets for imagesWrong
+  /// assets/images/wrong.png
+  static const String imagesWrong = "assets/images/wrong.png";
 }
 

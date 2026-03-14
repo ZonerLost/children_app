@@ -15,7 +15,6 @@ import 'package:story_spark/view/widgets/my_button_widget.dart';
 import 'package:story_spark/view/widgets/my_text_widget.dart';
 import 'package:get/get.dart';
 import 'package:story_spark/config/theme/theme_controller.dart';
-import 'package:story_spark/controller/app_mode_controller.dart';
 
 class Settings extends StatefulWidget {
   const Settings({super.key});
@@ -27,7 +26,8 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   int _cIndex = 0;
   int _sIndex = 0;
-  final appModeController = AppModeController.to;
+  bool _childModeActive = false;
+  int _userIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -41,44 +41,39 @@ class _SettingsState extends State<Settings> {
             padding: AppSizes.DEFAULT,
             physics: BouncingScrollPhysics(),
             children: [
-              Obx(() {
-                final modeIndex = appModeController.modeIndex;
-                return CustomCard(
-                  padding: 8,
-                  child: Row(
-                    spacing: 8,
-                    children: List.generate(2, (index) {
-                      final fonts = ['Child Mode', 'Parent Mode'];
-                      final bool selected = modeIndex == index;
-                      return Expanded(
-                        child: GestureDetector(
-                          onTap: () => index == 0
-                              ? appModeController.setChildMode()
-                              : appModeController.setParentMode(),
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 9,
-                              horizontal: 16,
-                            ),
-                            decoration: BoxDecoration(
-                              color: selected ? kSecondaryColor : kFillColor,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Center(
-                              child: MyText(
-                                text: fonts[index],
-                                color: selected ? kWhiteColor : kTertiaryColor,
-                                size: 14,
-                                weight: FontWeight.w500,
-                              ),
+              CustomCard(
+                padding: 8,
+                child: Row(
+                  spacing: 8,
+                  children: List.generate(2, (index) {
+                    final fonts = ['Child Mode', 'Parent Mode'];
+                    final bool selected = _userIndex == index;
+                    return Expanded(
+                      child: GestureDetector(
+                        onTap: () => setState(() => _userIndex = index),
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 9,
+                            horizontal: 16,
+                          ),
+                          decoration: BoxDecoration(
+                            color: selected ? kSecondaryColor : kFillColor,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: Center(
+                            child: MyText(
+                              text: fonts[index],
+                              color: selected ? kWhiteColor : kTertiaryColor,
+                              size: 14,
+                              weight: FontWeight.w500,
                             ),
                           ),
                         ),
-                      );
-                    }),
-                  ),
-                );
-              }),
+                      ),
+                    );
+                  }),
+                ),
+              ),
               SizedBox(height: 16),
               CustomCard(
                 child: Column(
@@ -318,66 +313,55 @@ class _SettingsState extends State<Settings> {
                       size: 13,
                     ),
 
-                    Container(
-                      margin: EdgeInsets.symmetric(vertical: 12),
-                      height: 1,
-                      color: kWhiteColor,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              Obx(
-                                () => MyText(
-                                  text: !appModeController.isParentMode.value
-                                      ? 'Parent Mode'
-                                      : 'Child Mode',
-                                  size: 16,
-                                  fontFamily: AppFonts.balsamiqSans,
-                                  paddingBottom: 2,
-                                ),
-                              ),
-                              Obx(
-                                () => MyText(
-                                  text: !appModeController.isParentMode.value
-                                      ? 'Simplifies interface for children.'
-                                      : 'Use as a child for a focused reading experience.',
-                                  color: kQuaternaryColor,
-                                  weight: FontWeight.w500,
-                                  size: 13,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        Transform.scale(
-                          scale: 0.7,
-                          alignment: Alignment.centerRight,
-                          child: SizedBox(
-                            height: 24 / 0.7,
-                            width: 44 / 0.7,
-                            child: Obx(
-                              () => CupertinoSwitch(
-                                value: !appModeController.isParentMode.value,
-                                trackOutlineColor: WidgetStateProperty.all(
-                                  kTertiaryColor,
-                                ),
-                                onChanged: (_) =>
-                                    appModeController.toggleMode(),
-                                activeTrackColor: kOrangeColor,
-                                inactiveTrackColor: kWhiteColor.withValues(
-                                  alpha: 0.8,
-                                ),
-                                thumbColor: kWhiteColor,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+                    // Container(
+                    //   margin: EdgeInsets.symmetric(vertical: 12),
+                    //   height: 1,
+                    //   color: kWhiteColor,
+                    // ),
+                    // Row(
+                    //   children: [
+                    //     Expanded(
+                    //       child: Column(
+                    //         crossAxisAlignment: CrossAxisAlignment.stretch,
+                    //         children: [
+                    //           MyText(
+                    //             text: 'Child Mode Active',
+                    //             size: 16,
+                    //             fontFamily: AppFonts.balsamiqSans,
+                    //             paddingBottom: 2,
+                    //           ),
+                    //           MyText(
+                    //             text: 'Simplifies interface for children.',
+                    //             color: kQuaternaryColor,
+                    //             weight: FontWeight.w500,
+                    //             size: 13,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     Transform.scale(
+                    //       scale: 0.7,
+                    //       alignment: Alignment.centerRight,
+                    //       child: SizedBox(
+                    //         height: 24 / 0.7,
+                    //         width: 44 / 0.7,
+                    //         child: CupertinoSwitch(
+                    //           value: _childModeActive,
+                    //           trackOutlineColor: WidgetStateProperty.all(
+                    //             kTertiaryColor,
+                    //           ),
+                    //           onChanged: (value) =>
+                    //               setState(() => _childModeActive = value),
+                    //           activeTrackColor: kOrangeColor,
+                    //           inactiveTrackColor: kWhiteColor.withValues(
+                    //             alpha: 0.8,
+                    //           ),
+                    //           thumbColor: kWhiteColor,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               ),

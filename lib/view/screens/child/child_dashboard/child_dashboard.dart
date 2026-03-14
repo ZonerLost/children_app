@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:story_spark/controller/app_mode_controller.dart';
+import 'package:story_spark/view/screens/child/vocabulary/vocabulary.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:story_spark/config/theme/theme_controller.dart';
 import 'package:story_spark/constants/app_colors.dart';
@@ -804,7 +805,12 @@ class ChildDashboard extends StatelessWidget {
               //     },
               //   ),
               // ),
-              _HeadingTile(title: 'My Vocabulary', onTap: () {}),
+              _HeadingTile(
+                title: 'My Vocabulary',
+                onTap: () {
+                  Get.to(() => Vocabulary());
+                },
+              ),
               ListView.separated(
                 shrinkWrap: true,
                 separatorBuilder: (context, index) => SizedBox(height: 10),

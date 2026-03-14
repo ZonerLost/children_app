@@ -46,7 +46,11 @@ class ProsodyCoach extends StatelessWidget {
       final isDark = ThemeController.to.isDarkMode.value;
       return CustomContainer(
         child: Scaffold(
-          appBar: simpleAppBar(title: 'Prosody Coach', haveLeading: false),
+          appBar: simpleAppBar(
+            title: 'Prosody Coach',
+            haveLeading: false,
+            centerTitle: false,
+          ),
           body: ListView(
             shrinkWrap: true,
             padding: AppSizes.DEFAULT,

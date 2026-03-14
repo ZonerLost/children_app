@@ -94,6 +94,10 @@ class Assets {
   /// assets/images/ai_interest_dark.png
   static const String imagesAiInterestDark = "assets/images/ai_interest_dark.png";
 
+  /// Assets for imagesAiRed
+  /// assets/images/ai_red.png
+  static const String imagesAiRed = "assets/images/ai_red.png";
+
   /// Assets for imagesAiSumDark
   /// assets/images/ai_sum_dark.png
   static const String imagesAiSumDark = "assets/images/ai_sum_dark.png";
@@ -133,6 +137,10 @@ class Assets {
   /// Assets for imagesArrowNextSm
   /// assets/images/arrow_next_sm.png
   static const String imagesArrowNextSm = "assets/images/arrow_next_sm.png";
+
+  /// Assets for imagesAvgDuration
+  /// assets/images/avg_duration.png
+  static const String imagesAvgDuration = "assets/images/avg_duration.png";
 
   /// Assets for imagesAvgQuizComplete
   /// assets/images/avg_quiz_complete.png
@@ -185,6 +193,10 @@ class Assets {
   /// Assets for imagesBookReadingIcon
   /// assets/images/book_reading_icon.png
   static const String imagesBookReadingIcon = "assets/images/book_reading_icon.png";
+
+  /// Assets for imagesBooks
+  /// assets/images/books.png
+  static const String imagesBooks = "assets/images/books.png";
 
   /// Assets for imagesBoy
   /// assets/images/boy.png
@@ -938,6 +950,10 @@ class Assets {
   /// assets/images/home_banner_dark.png
   static const String imagesHomeBannerDark = "assets/images/home_banner_dark.png";
 
+  /// Assets for imagesHours
+  /// assets/images/hours.png
+  static const String imagesHours = "assets/images/hours.png";
+
   /// Assets for imagesInviteToAddFriends
   /// assets/images/invite_to_add_friends.png
   static const String imagesInviteToAddFriends = "assets/images/invite_to_add_friends.png";
@@ -1206,6 +1222,10 @@ class Assets {
   /// assets/images/o3.png
   static const String imagesO3 = "assets/images/o3.png";
 
+  /// Assets for imagesPages
+  /// assets/images/pages.png
+  static const String imagesPages = "assets/images/pages.png";
+
   /// Assets for imagesPants
   /// assets/images/pants.png
   static const String imagesPants = "assets/images/pants.png";
@@ -1261,6 +1281,10 @@ class Assets {
   /// Assets for imagesRewards
   /// assets/images/rewards.png
   static const String imagesRewards = "assets/images/rewards.png";
+
+  /// Assets for imagesRoundedAi
+  /// assets/images/rounded_ai.png
+  static const String imagesRoundedAi = "assets/images/rounded_ai.png";
 
   /// Assets for imagesS1
   /// assets/images/s1.png
@@ -1357,6 +1381,10 @@ class Assets {
   /// Assets for imagesSettings
   /// assets/images/settings.png
   static const String imagesSettings = "assets/images/settings.png";
+
+  /// Assets for imagesShare
+  /// assets/images/share.png
+  static const String imagesShare = "assets/images/share.png";
 
   /// Assets for imagesShareSm
   /// assets/images/share_sm.png
@@ -1457,6 +1485,14 @@ class Assets {
   /// Assets for imagesToneAccuracy
   /// assets/images/tone_accuracy.png
   static const String imagesToneAccuracy = "assets/images/tone_accuracy.png";
+
+  /// Assets for imagesTotalBooks
+  /// assets/images/total_books.png
+  static const String imagesTotalBooks = "assets/images/total_books.png";
+
+  /// Assets for imagesTotalPages
+  /// assets/images/total_pages.png
+  static const String imagesTotalPages = "assets/images/total_pages.png";
 
   /// Assets for imagesTrashIcon
   /// assets/images/trash_icon.png

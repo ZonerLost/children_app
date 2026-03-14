@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:story_spark/controller/app_mode_controller.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:story_spark/config/theme/theme_controller.dart';
 import 'package:story_spark/constants/app_colors.dart';
@@ -18,7 +20,8 @@ import 'package:story_spark/view/widgets/my_text_field_widget.dart';
 import 'package:story_spark/view/widgets/my_text_widget.dart';
 
 class ChildDashboard extends StatelessWidget {
-  const ChildDashboard({super.key});
+  ChildDashboard({super.key});
+  final appModeController = AppModeController.to;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,45 @@ class ChildDashboard extends StatelessWidget {
       final isDark = ThemeController.to.isDarkMode.value;
       return CustomContainer(
         child: Scaffold(
-          appBar: simpleAppBar(title: 'Lily’s Dashboard', haveLeading: false),
+          appBar: simpleAppBar(
+            title: 'Lily’s Dashboard',
+            haveLeading: false,
+            centerTitle: false,
+            actions: [
+              Center(
+                child: MyText(
+                  text: !appModeController.isParentMode.value
+                      ? 'Child View'
+                      : 'Parent View',
+                  size: 12,
+                  color: isDark ? kHintColor : kOrangeColor,
+                ),
+              ),
+              Center(
+                child: Transform.scale(
+                  scale: 0.7,
+                  alignment: Alignment.centerRight,
+                  child: SizedBox(
+                    height: 24 / 0.7,
+                    width: 44 / 0.7,
+                    child: Obx(
+                      () => CupertinoSwitch(
+                        value: !appModeController.isParentMode.value,
+                        trackOutlineColor: WidgetStateProperty.all(
+                          kTertiaryColor,
+                        ),
+                        onChanged: (_) => appModeController.toggleMode(),
+                        activeTrackColor: kOrangeColor,
+                        inactiveTrackColor: kOrangeColor.withValues(alpha: 0.8),
+                        thumbColor: kWhiteColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 16),
+            ],
+          ),
           body: ListView(
             shrinkWrap: true,
             padding: AppSizes.VERTICAL,

@@ -21,38 +21,103 @@ import 'package:story_spark/view/widgets/my_text_widget.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'dart:math' as math;
 
-class _ReadingSample {
-  final String time; // category label (e.g. 'Jan')
-  final double minutes;
-  _ReadingSample(this.time, this.minutes);
+class _ComprehensionScore {
+  final String weekLabel; // e.g. 'Week 1'
+  final double percentage; // e.g. 0.8 for 80%
+
+  _ComprehensionScore(this.weekLabel, {required this.percentage});
 }
 
-List<_ReadingSample> _generateReadingData(
-  double screenWidth, {
-  List<String>? categories,
-}) {
-  // If categories provided, use them as fixed labels (useful for custom X-axis labels).
-  if (categories != null && categories.isNotEmpty) {
-    return List.generate(categories.length, (i) {
-      final label = categories[i];
-      // If the label contains a leading number (e.g. '120words'), use that
-      // as the numeric value. Otherwise fall back to 0.
-      final match = RegExp(r'^(\d+(?:\.\d+)?)').firstMatch(label);
-      final value = match != null ? double.parse(match.group(1)!) : 0.0;
-      return _ReadingSample(label, value);
-    });
-  }
-
-  // Default behavior: determine how many bars to show based on available width (one bar ~48px)
-  final count = math.max(5, math.min(12, (screenWidth / 48).floor()));
-  final months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
-  return List.generate(count, (i) {
-    final label = months[i % months.length];
-    // synthetic but smooth sample values (minutes)
-    final minutes = 12 + 10 * math.sin(i / 2) + 6 * math.cos(i / 3);
-    return _ReadingSample(label, minutes.abs());
+// Generates sample data for 6 weeks with decreasing comprehension scores.
+List<_ComprehensionScore> _generateSampleData() {
+  // Example comprehension percentages for each week (as a fraction)
+  final List<double> percentages = [0.8, 0.6, 0.4, 0.2, 0.0, 0.5];
+  return List.generate(percentages.length, (i) {
+    return _ComprehensionScore(weekLabels[i], percentage: percentages[i]);
   });
 }
+
+const List<String> weekLabels = [
+  'Week 1',
+  'Week 2',
+  'Week 3',
+  'Week 5',
+  'Week 6',
+  'Week 7',
+];
+
+class _GenreDistribution {
+  final String genre;
+  final double percentage;
+  final Color color;
+
+  _GenreDistribution(
+    this.genre, {
+    required this.percentage,
+    required this.color,
+  });
+}
+
+List<_GenreDistribution> _generateGenreData() {
+  return [
+    _GenreDistribution(
+      'Fantasy',
+      percentage: 30,
+      color: const Color(0xFF7B61FF),
+    ),
+    _GenreDistribution(
+      'Sci-Fi',
+      percentage: 22,
+      color: const Color(0xFF00C9A7),
+    ),
+    _GenreDistribution(
+      'Mystery',
+      percentage: 20,
+      color: const Color(0xFFFF6B6B),
+    ),
+    _GenreDistribution(
+      'Biography',
+      percentage: 15,
+      color: const Color(0xFFFFB347),
+    ),
+    _GenreDistribution(
+      'Historical',
+      percentage: 13,
+      color: const Color(0xFF4FC3F7),
+    ),
+  ];
+}
+
+class _ClassGrowthTime {
+  final String monthLabel; // e.g. 'Jan'
+  final double percentage; // e.g. 0.8 for 80%
+
+  _ClassGrowthTime(this.monthLabel, {required this.percentage});
+}
+
+// Generates sample data for 6 months with decreasing comprehension scores.
+List<_ClassGrowthTime> _generateGrowthSampleData() {
+  // Example comprehension percentages for each month (as a fraction)
+  final List<double> percentages = [0.5, 0.55, 0.6, 0.65, 0.7, 0.75];
+  return List.generate(percentages.length, (i) {
+    return _ClassGrowthTime(monthLabels[i], percentage: percentages[i]);
+  });
+}
+
+List<String> monthLabels = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];
 
 class ParentViewChildDb extends StatelessWidget {
   const ParentViewChildDb({super.key});
@@ -99,14 +164,14 @@ class ParentViewChildDb extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       MyText(
-                        text: 'Average Comprehension Score',
+                        text: 'At-Risk Flags',
                         size: 16,
                         paddingBottom: 8,
                         weight: FontWeight.w700,
                         fontFamily: AppFonts.balsamiqSans,
                       ),
                       MyText(
-                        text: 'Overall class understanding',
+                        text: 'Students needing immediate attention',
                         size: 14,
                         weight: FontWeight.w500,
                         color: kQuaternaryColor,
@@ -116,717 +181,218 @@ class ParentViewChildDb extends StatelessWidget {
                         color: kBorderColor,
                         margin: EdgeInsets.symmetric(vertical: 10),
                       ),
-                      SizedBox(height: 12),
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Expanded(
-                            child: MyButton(
-                              buttonText: '+ Assign Book',
-                              onTap: () {},
-                              height: 36,
-                              radius: 6,
-                              textSize: 13,
-                            ),
-                          ),
-                          Expanded(
-                            child: MyBorderButton(
-                              buttonText: '',
-                              onTap: () {},
-                              height: 36,
-                              radius: 6,
-                              bgColor: Color(0xff190928),
-                              customChild: Row(
-                                spacing: 6,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    Assets.imagesAddChild,
-                                    height: 16,
-                                  ),
-                                  MyText(
-                                    text: 'Add Child',
-                                    size: 13,
-                                    weight: FontWeight.w700,
-                                  ),
-                                ],
-                              ),
-                              textSize: 13,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 16),
-              Padding(
-                padding: AppSizes.HORIZONTAL,
-                child: CustomCard(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      // CustomCard(
-                      //   padding: 16,
-                      //   child: Column(
-                      //     crossAxisAlignment: CrossAxisAlignment.stretch,
-                      //     children: [
-                      //       Image.asset(Assets.imagesShield, height: 32),
-                      //       MyText(
-                      //         paddingTop: 10,
-                      //         text: 'Parent Access Required',
-                      //         size: 20,
-                      //         fontFamily: AppFonts.balsamiqSans,
-                      //         weight: FontWeight.w700,
-                      //         textAlign: TextAlign.center,
-                      //         paddingBottom: 6,
-                      //       ),
-                      //       MyText(
-                      //         text:
-                      //             'Please authenticate to access the Parent Dashboard.',
-                      //         size: 14,
-                      //         color: kQuaternaryColor,
-                      //         textAlign: TextAlign.center,
-                      //       ),
-                      //     ],
-                      //   ),
-                      //   radius: 32,
-                      // ),
-                      // SizedBox(height: 16),
-                      // DottedBorder(
-                      //   options: RoundedRectDottedBorderOptions(
-                      //     radius: Radius.circular(6),
-                      //     strokeWidth: 2,
-                      //     dashPattern: [6, 4],
-                      //     color: isDark ? kHintColorDark : Color(0xffDEE1E6),
-                      //   ),
-                      //   child: SizedBox(
-                      //     height: 48,
-                      //     child: Row(
-                      //       mainAxisAlignment: MainAxisAlignment.center,
-                      //       children: [
-                      //         Image.asset(
-                      //           Assets.imagesAdd,
-                      //           height: 16,
-                      //           color: kTertiaryColor,
-                      //         ),
-                      //         SizedBox(width: 8),
-                      //         MyText(
-                      //           text: 'Add more child',
-                      //           size: 16,
-                      //           weight: FontWeight.w600,
-                      //           paddingRight: 8,
-                      //         ),
-                      //       ],
-                      //     ),
-                      //   ),
-                      // ),
-                      Row(
-                        spacing: 12,
-                        children: [
-                          Image.asset(
-                            Assets.imagesMascotProgress,
-                            height: 24,
-                            color: kTertiaryColor,
-                          ),
-                          Expanded(
-                            child: MyText(
-                              text: 'Mascot Progress Narrative',
-                              size: 18,
-                              weight: FontWeight.w700,
-                              fontFamily: AppFonts.balsamiqSans,
-                            ),
-                          ),
-                        ],
-                      ),
-                      MyText(
-                        paddingTop: 14,
-                        text:
-                            'Alice has shown remarkable growth this past month, demonstrating increased fluency and a keen interest in historical fiction. Her dedication to dMascotly reading has significantly improved her comprehension skills. Keep up the fantastic work, Alice!',
-                        size: 14,
-                        lineHeight: 1.4,
-                        color: isDark ? kQuaternaryColorDark : kQuaternaryColor,
-                        weight: FontWeight.w500,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 16),
-              Padding(
-                padding: AppSizes.HORIZONTAL,
-                child: CustomCard(
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: MyText(
-                              text: 'Child Analytics',
-                              size: 18,
-                              weight: FontWeight.w700,
-                              fontFamily: AppFonts.balsamiqSans,
-                            ),
-                          ),
-                          MyButton(
-                            width: 80,
-                            height: 28,
-                            textSize: 14,
-                            radius: 8,
-                            buttonText: '',
-                            customChild: Row(
-                              spacing: 8,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                MyText(text: 'Monthly', size: 12),
-                                Image.asset(Assets.imagesDownArrow, height: 8),
-                              ],
-                            ),
-                            onTap: () {},
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 12),
-                      MyButton(
-                        width: Get.width,
-                        height: 36,
-                        textSize: 14,
-                        radius: 8,
-                        buttonText: '',
-                        customChild: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 14),
-                          child: Row(
-                            spacing: 8,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                child: MyText(text: 'Select Child', size: 14),
-                              ),
-                              Image.asset(Assets.imagesDownArrow, height: 12),
-                            ],
-                          ),
-                        ),
-                        onTap: () {},
-                      ),
-                      SizedBox(height: 12),
-                      Builder(
-                        builder: (context) {
-                          final readingData = _generateReadingData(
-                            MediaQuery.of(context).size.width - 40,
-                          );
-                          final maxY =
-                              (readingData
-                                          .map((e) => e.minutes)
-                                          .reduce((a, b) => a > b ? a : b) *
-                                      1.15)
-                                  .ceilToDouble();
-                          return Container(
-                            height: 160,
-                            child: SfCartesianChart(
-                              borderWidth: 0,
-                              plotAreaBorderWidth: 0,
-                              margin: EdgeInsets.zero,
-                              primaryXAxis: CategoryAxis(
-                                plotOffset: 16,
-                                axisLine: AxisLine(width: 0),
-                                majorTickLines: MajorTickLines(width: 0),
-                                majorGridLines: MajorGridLines(width: 0),
-                                labelStyle: TextStyle(
-                                  fontSize: 12,
-                                  color: kQuaternaryColor,
-                                ),
-                                labelsExtent: 32,
-                                interval: 1,
-                              ),
-                              primaryYAxis: NumericAxis(
-                                minimum: 0,
-                                plotOffset: 16,
-                                axisLine: AxisLine(width: 0),
-                                minorTickLines: MinorTickLines(width: 0),
-                                minorGridLines: MinorGridLines(width: 0),
-                                majorTickLines: MajorTickLines(width: 0),
-                                majorGridLines: MajorGridLines(width: 0),
-                                maximum: maxY,
-                                interval: (maxY / 4).ceilToDouble(),
-                                labelFormat: '{value}m',
-                                labelStyle: TextStyle(
-                                  fontSize: 12,
-                                  color: kQuaternaryColor,
-                                ),
-                              ),
-                              series: <CartesianSeries<_ReadingSample, String>>[
-                                ColumnSeries<_ReadingSample, String>(
-                                  name: 'Minutes',
-                                  dataSource: readingData,
-                                  xValueMapper: (_ReadingSample d, _) => d.time,
-                                  yValueMapper: (_ReadingSample d, _) =>
-                                      d.minutes,
-                                  color: kYellowColor,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(6),
-                                  ),
-                                  spacing: 0.2,
-                                  enableTooltip: true,
-                                ),
-
-                                ColumnSeries<_ReadingSample, String>(
-                                  name: 'Minutes',
-                                  dataSource: readingData,
-                                  xValueMapper: (_ReadingSample d, _) => d.time,
-                                  yValueMapper: (_ReadingSample d, _) =>
-                                      d.minutes,
-                                  color: kRedColorDark,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(6),
-                                  ),
-                                  spacing: 0.2,
-                                  enableTooltip: true,
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      ),
-                      SizedBox(height: 12),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Row(
-                              spacing: 8,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 8,
-                                  height: 8,
-                                  decoration: BoxDecoration(
-                                    color: kRedColorDark,
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: BorderRadius.circular(2),
-                                  ),
-                                ),
-                                MyText(text: 'Books Completed', size: 12),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Row(
-                              spacing: 8,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Container(
-                                  width: 8,
-                                  height: 8,
-                                  decoration: BoxDecoration(
-                                    color: kYellowColor,
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: BorderRadius.circular(2),
-                                  ),
-                                ),
-                                MyText(text: 'Avg Reading Time', size: 12),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Container(
-                        height: 1,
-                        color: kBorderColor,
-                        margin: EdgeInsets.symmetric(vertical: 12),
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                MyText(
-                                  text: '49',
-                                  size: 24,
-                                  weight: FontWeight.w700,
-                                ),
-                                MyText(text: 'Books Completed'),
-                              ],
-                            ),
-                          ),
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                MyText(
-                                  text: '51 min',
-                                  size: 24,
-                                  weight: FontWeight.w700,
-                                ),
-                                MyText(text: 'Avg. Time'),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-
-              // Padding(
-              //   padding: EdgeInsets.fromLTRB(20, 24, 20, 8),
-              //   child: Row(
-              //     children: [
-              //       Expanded(
-              //         child: MyText(
-              //           text: 'Vocabulary Growth',
-              //           size: 18,
-              //           weight: FontWeight.w700,
-              //           fontFamily: AppFonts.balsamiqSans,
-              //         ),
-              //       ),
-              //       Image.asset(
-              //         Assets.imagesVocabularyGrowth,
-              //         height: 20,
-              //         color: isDark ? kHintColor : null,
-              //       ),
-              //     ],
-              //   ),
-              // ),
-
-              // Builder(
-              //   builder: (context) {
-              //     // Vocabulary growth data (numeric, not string labels)
-              //     final vocabData = [120, 120, 90, 90, 60, 60, 30, 30, 0];
-              //     final categories = [
-              //       'Jan',
-              //       'Feb',
-              //       'Mar',
-              //       'Apr',
-              //       'May',
-              //       'Jun',
-              //       'Jul',
-              //       'Aug',
-              //       'Sep',
-              //     ];
-              //     final vocabReadingData = List.generate(
-              //       vocabData.length,
-              //       (i) => _ReadingSample(categories[i], vocabData[i].toDouble()),
-              //     );
-              //     final _maxDataVal = vocabData.reduce((a, b) => a > b ? a : b);
-              //     final maxY = _maxDataVal > 0
-              //         ? (_maxDataVal * 1.15).ceilToDouble()
-              //         : 1.0;
-
-              //     return Container(
-              //       margin: AppSizes.HORIZONTAL,
-              //       height: 160,
-              //       child: SfCartesianChart(
-              //         borderWidth: 0,
-              //         plotAreaBorderWidth: 0,
-              //         margin: EdgeInsets.zero,
-              //         primaryXAxis: CategoryAxis(
-              //           plotOffset: 16,
-              //           axisLine: AxisLine(width: 0),
-              //           majorTickLines: MajorTickLines(width: 0),
-              //           majorGridLines: MajorGridLines(width: 0),
-              //           labelStyle: TextStyle(
-              //             fontSize: 12,
-              //             color: kQuaternaryColor,
-              //           ),
-              //           labelsExtent: 32,
-              //           interval: 1,
-              //         ),
-              //         primaryYAxis: NumericAxis(
-              //           minimum: 0,
-              //           plotOffset: 16,
-              //           axisLine: AxisLine(width: 0),
-              //           minorTickLines: MinorTickLines(width: 0),
-              //           minorGridLines: MinorGridLines(width: 0),
-              //           majorTickLines: MajorTickLines(width: 0),
-              //           majorGridLines: MajorGridLines(width: 0),
-              //           maximum: maxY,
-              //           interval: (maxY / 4).ceilToDouble(),
-              //           labelFormat: '{value} words',
-              //           labelStyle: TextStyle(
-              //             fontSize: 10,
-              //             color: kQuaternaryColor,
-              //           ),
-              //         ),
-              //         series: <CartesianSeries<_ReadingSample, String>>[
-              //           SplineSeries<_ReadingSample, String>(
-              //             name: 'Vocabulary',
-              //             dataSource: vocabReadingData,
-              //             xValueMapper: (_ReadingSample d, _) => d.time,
-              //             yValueMapper: (_ReadingSample d, _) => d.minutes,
-              //             color: kPurpleColor,
-              //             markerSettings: MarkerSettings(
-              //               isVisible: true,
-              //               color: kFillColor,
-              //               borderColor: kPurpleColor,
-              //               borderWidth: 2,
-              //             ),
-              //             width: 2.0,
-              //             enableTooltip: true,
-              //           ),
-              //         ],
-              //       ),
-              //     );
-              //   },
-              // ),
-
-              // SizedBox(height: 24),
-              // Row(
-              //   spacing: 8,
-              //   mainAxisAlignment: MainAxisAlignment.center,
-              //   children: [
-              //     Container(
-              //       width: 8,
-              //       height: 8,
-              //       decoration: BoxDecoration(
-              //         color: kPurpleColor,
-              //         shape: BoxShape.rectangle,
-              //         borderRadius: BorderRadius.circular(2),
-              //       ),
-              //     ),
-              //     MyText(text: 'New Words', color: kQuaternaryColor, size: 12),
-              //   ],
-              // ),
-              SizedBox(height: 16),
-              Padding(
-                padding: AppSizes.HORIZONTAL,
-                child: CustomCard(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      // CustomCard(
-                      //   radius: 24,
-                      //   child: Column(
-                      //     crossAxisAlignment: CrossAxisAlignment.stretch,
-                      //     children: [
-                      //       Row(
-                      //         spacing: 12,
-                      //         children: [
-                      //           Image.asset(
-                      //             Assets.imagesPredictedGrowth,
-                      //             height: 20,
-                      //             color: isDark ? kWhiteColor : null,
-                      //           ),
-                      //           Expanded(
-                      //             child: MyText(
-                      //               text: 'Predicted Growth',
-                      //               size: 16,
-                      //               weight: FontWeight.w600,
-                      //             ),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //       MyText(
-                      //         paddingTop: 10,
-                      //         text:
-                      //             'Based on current activity, Leo is projected to learn 150 new words and read 5 more books next month.',
-                      //         size: 14,
-                      //         color: kQuaternaryColor,
-                      //         paddingBottom: 12,
-                      //       ),
-                      //       Row(
-                      //         children: [
-                      //           SizedBox(
-                      //             width: 140,
-                      //             child: MyButton(
-                      //               height: 40,
-                      //               bgColor: kOrangeColor,
-                      //               customChild: Row(
-                      //                 mainAxisAlignment: MainAxisAlignment.center,
-                      //                 children: [
-                      //                   MyText(
-                      //                     text: 'Learn More',
-                      //                     size: 16,
-                      //                     color: kWhiteColor,
-                      //                     weight: FontWeight.w500,
-                      //                   ),
-                      //                   SizedBox(width: 12),
-                      //                   Image.asset(
-                      //                     Assets.imagesArrowNextIos,
-                      //                     height: 16,
-                      //                     color: isDark ? kWhiteColor : null,
-                      //                   ),
-                      //                 ],
-                      //               ),
-                      //               buttonText: '',
-                      //               onTap: () {},
-                      //               radius: 16,
-                      //             ),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                      // SizedBox(height: 16),
-                      // CustomCard(
-                      //   radius: 16,
-                      //   child: Column(
-                      //     children: [
-                      //       Image.asset(
-                      //         isDark
-                      //             ? Assets.imagesAiSumDark
-                      //             : Assets.imagesAiSummary,
-                      //         height: 46,
-                      //       ),
-                      //       MyText(
-                      //         paddingTop: 12,
-                      //         text: 'Print Certificates',
-                      //         textAlign: TextAlign.center,
-                      //         size: 16,
-                      //         weight: FontWeight.w700,
-                      //         fontFamily: AppFonts.balsamiqSans,
-                      //         paddingBottom: 12,
-                      //       ),
-                      //       MyText(
-                      //         textAlign: TextAlign.center,
-                      //         text:
-                      //             'Celebrate reading milestones with personalized printable certificates.',
-                      //         color: kQuaternaryColor,
-                      //         lineHeight: 1.5,
-                      //         paddingBottom: 24,
-                      //       ),
-                      //       MyButton(
-                      //         buttonText: 'Generate Certificate',
-                      //         onTap: () {},
-                      //         height: 40,
-                      //         radius: 16,
-                      //         textSize: 14,
-                      //       ),
-                      //     ],
-                      //   ),
-                      // ),
-                      MyText(
-                        text: 'Controls & Safety',
-                        size: 18,
-                        weight: FontWeight.w700,
-                        fontFamily: AppFonts.balsamiqSans,
-                        paddingBottom: 10,
-                      ),
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Image.asset(
-                            Assets.imagesScreenTimeLimits,
-                            height: 16,
-                          ),
-                          Expanded(
-                            child: MyText(
-                              text: 'Screen Time Limits',
-                              weight: FontWeight.w600,
-                              size: 16,
-                            ),
-                          ),
-                        ],
-                      ),
+                      Container(),
                       Row(
                         spacing: 12,
                         children: [
                           Expanded(
-                            child: SliderTheme(
-                              data: SliderTheme.of(
-                                context,
-                              ).copyWith(trackShape: CustomTrackShape()),
-                              child: Slider(
-                                value: 0.3,
-                                onChanged: (value) {},
-                                thumbColor: kWhiteColor,
-                                activeColor: isDark
-                                    ? kSecondaryColor
-                                    : kOrangeColor,
-                                inactiveColor: isDark
-                                    ? kWhiteColor.withValues(alpha: 0.7)
-                                    : kGreyColor5,
+                            child: LinearProgressIndicator(
+                              value: 0.6,
+                              backgroundColor: kBorderColor,
+                              borderRadius: BorderRadius.circular(50),
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                kSecondaryColor,
                               ),
+                              minHeight: 10,
                             ),
                           ),
                           MyText(
-                            text: '60 min',
-                            size: 14,
-                            color: kQuaternaryColor,
+                            text: '75%',
+                            size: 16,
+                            weight: FontWeight.w700,
+                            color: isDark
+                                ? kQuaternaryColorDark
+                                : kQuaternaryColor,
+                            textAlign: TextAlign.center,
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 10),
+                      MyText(
+                        text: 'Current Class Average',
+                        size: 14,
+                        weight: FontWeight.w500,
+                        color: kQuaternaryColor,
+                        paddingBottom: 12,
+                      ),
+                      SizedBox(
+                        height: 160,
+                        child: SfCartesianChart(
+                          borderWidth: 0,
+                          plotAreaBorderWidth: 0,
+                          margin: EdgeInsets.zero,
+                          primaryXAxis: CategoryAxis(
+                            plotOffset: 16,
+                            maximum: 5,
+
+                            axisLine: AxisLine(width: 0),
+                            majorTickLines: MajorTickLines(width: 0),
+                            majorGridLines: MajorGridLines(width: 0),
+                            labelStyle: TextStyle(
+                              fontSize: 10,
+                              color: kQuaternaryColor,
+                            ),
+                          ),
+                          primaryYAxis: NumericAxis(
+                            minimum: 0,
+                            plotOffset: 16,
+                            labelStyle: TextStyle(
+                              fontSize: 10,
+                              color: kQuaternaryColor,
+                            ),
+                            axisLine: AxisLine(width: 0),
+                            minorTickLines: MinorTickLines(width: 0),
+                            minorGridLines: MinorGridLines(width: 0),
+                            majorTickLines: MajorTickLines(width: 0),
+                            majorGridLines: MajorGridLines(width: 0),
+                            maximum: 100,
+                            interval: 30,
+                          ),
+                          series: <CartesianSeries<dynamic, dynamic>>[
+                            SplineSeries<_ComprehensionScore, String>(
+                              name: 'Amplitude',
+                              dataSource: _generateSampleData(),
+                              xValueMapper: (d, i) => d.weekLabel,
+                              yValueMapper: (d, i) => d.percentage * 60,
+                              color: kSecondaryColor,
+                              width: 2,
+                              markerSettings: MarkerSettings(
+                                isVisible: true,
+                                color: kSecondaryColor,
+                              ),
+                              enableTooltip: true,
+                              splineType: SplineType.natural,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 24),
+                      Row(
+                        spacing: 8,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              color: kSecondaryColor,
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(2),
+                            ),
+                          ),
+                          MyText(
+                            text: 'Average Score',
+                            color: isDark
+                                ? kQuaternaryColorDark
+                                : kQuaternaryColor,
+                            size: 12,
                           ),
                         ],
                       ),
                       MyText(
-                        text: 'Set daily reading limits for your children.',
+                        paddingTop: 12,
+                        textAlign: TextAlign.center,
+                        text: 'Trend over last 5 weeks',
+                        color: isDark ? kQuaternaryColorDark : kQuaternaryColor,
                         size: 14,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 16),
+              Padding(
+                padding: AppSizes.HORIZONTAL,
+                child: CustomCard2(
+                  padding: 16,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      MyText(
+                        text: 'At-Risk Flags',
+                        size: 16,
+                        paddingBottom: 8,
+                        weight: FontWeight.w700,
+                        fontFamily: AppFonts.balsamiqSans,
+                      ),
+                      MyText(
+                        text: 'Students needing immediate attention',
+                        size: 14,
+                        weight: FontWeight.w500,
                         color: kQuaternaryColor,
                       ),
-
                       Container(
                         height: 1,
                         color: kBorderColor,
-                        margin: EdgeInsets.symmetric(vertical: 12),
+                        margin: EdgeInsets.symmetric(vertical: 10),
                       ),
-                      Row(
-                        spacing: 8,
-                        children: [
-                          Image.asset(Assets.imagesContentFilters, height: 16),
-                          Expanded(
-                            child: MyText(
-                              text: 'Content Filters',
-                              weight: FontWeight.w600,
-                              size: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 12),
-                      ...List.generate(2, (index) {
-                        final featureNames = [
-                          'Block Mature Content',
-                          'Restrict Specific Genres',
-                        ];
-                        return Row(
-                          children: [
-                            Expanded(
+                      Container(
+                        height: 36,
+                        decoration: BoxDecoration(
+                          color: kSecondaryColor,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          children: List.generate(4, (index) {
+                            return Expanded(
+                              flex: [2, 2, 3, 2][index],
                               child: MyText(
-                                text: featureNames[index],
-                                size: 15,
-                                weight: FontWeight.w500,
+                                text: [
+                                  'Student',
+                                  'Risk Factor',
+                                  'Flag',
+                                  'Action',
+                                ][index],
+                                size: 10,
+                                textAlign: TextAlign.center,
+                                weight: FontWeight.bold,
+                                color: kTertiaryColor,
                               ),
-                            ),
-                            Transform.scale(
-                              scale: 0.7,
-                              alignment: Alignment.centerRight,
-                              child: SizedBox(
-                                height: 24 / 0.7,
-                                width: 44 / 0.7,
-                                child: CupertinoSwitch(
-                                  value: true,
-                                  trackOutlineColor: WidgetStateProperty.all(
-                                    kTertiaryColor,
+                            );
+                          }),
+                        ),
+                      ),
+                      SizedBox(height: 8),
+                      SizedBox(
+                        height: 30,
+                        child: Row(
+                          children: List.generate(4, (index) {
+                            return Expanded(
+                              flex: [2, 2, 3, 2][index],
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                  vertical: index == 2 ? 4 : 0,
+                                ),
+                                margin: EdgeInsets.symmetric(
+                                  horizontal: index == 2 ? 8 : 0,
+                                ),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: index == 2
+                                        ? kYellowColor
+                                        : Colors.transparent,
+                                    width: 1,
                                   ),
-                                  onChanged: (value) {},
-                                  activeTrackColor: kSecondaryColor,
-                                  inactiveTrackColor: kWhiteColor.withValues(
-                                    alpha: 0.7,
-                                  ),
-                                  thumbColor: kWhiteColor,
+                                  borderRadius: BorderRadius.circular(50),
+                                ),
+                                child: MyText(
+                                  text: [
+                                    'Leo',
+                                    'Low Comprehension',
+                                    'Medium',
+                                    'View Profile',
+                                  ][index],
+                                  size: 10,
+                                  textAlign: TextAlign.center,
+                                  weight: FontWeight.bold,
+                                  color: index == 2
+                                      ? kYellowColor
+                                      : kTertiaryColor,
                                 ),
                               ),
-                            ),
-                          ],
-                        );
-                      }),
-                      SizedBox(height: 6),
-                      Row(
-                        spacing: 8,
-                        children: [
-                          CustomCheckBox(
-                            isActive: true,
-                            onTap: () {},
-                            radius: 20,
-                          ),
-                          Expanded(
-                            child: MyText(
-                              text: 'Enable Safe Search',
-                              weight: FontWeight.w600,
-                              size: 15,
-                            ),
-                          ),
-                        ],
+                            );
+                          }),
+                        ),
                       ),
                     ],
                   ),
@@ -835,302 +401,224 @@ class ParentViewChildDb extends StatelessWidget {
               SizedBox(height: 16),
               Padding(
                 padding: AppSizes.HORIZONTAL,
-                child: CustomCard(
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: MyText(
-                              text: 'Rewards & Goals',
-                              size: 18,
-                              weight: FontWeight.w700,
-                              fontFamily: AppFonts.balsamiqSans,
-                            ),
-                          ),
-                          MyText(
-                            text: '+ Add Goal',
-                            size: 14,
-                            weight: FontWeight.w600,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 12),
-                      ...List.generate(2, (index) {
-                        final featureNames = [
-                          'Read 10 books this month',
-                          'Complete \'The Little Prince\'',
-                        ];
-                        return Column(
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              spacing: 14,
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      MyText(
-                                        text: featureNames[index],
-                                        size: 15,
-                                        weight: FontWeight.w500,
-                                        paddingBottom: 6,
-                                      ),
-                                      Row(
-                                        spacing: 6,
-                                        children: [
-                                          Expanded(
-                                            child: LinearPercentIndicator(
-                                              lineHeight: 8.0,
-                                              percent: index == 0 ? 0.7 : 1.0,
-                                              progressColor: kSecondaryColor,
-                                              backgroundColor: kLightPinkColor2,
-                                              barRadius: Radius.circular(4),
-                                              padding: EdgeInsets.zero,
-                                              animation: true,
-                                              animateFromLastPercent: true,
-                                            ),
-                                          ),
-                                          MyText(
-                                            text:
-                                                '${(index == 0 ? 0.7 : 1.0 * 100).toInt()}%',
-                                            size: 12,
-                                            color: kQuaternaryColor,
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                index == 0
-                                    ? Container(
-                                        padding: EdgeInsets.symmetric(
-                                          horizontal: 8,
-                                          vertical: 4,
-                                        ),
-                                        decoration: BoxDecoration(
-                                          color: kYellowColor,
-                                          borderRadius: BorderRadius.circular(
-                                            50,
-                                          ),
-                                        ),
-                                        child: MyText(
-                                          text: 'Pending',
-                                          size: 12,
-                                          color: kBlackColor,
-                                          weight: FontWeight.w500,
-                                        ),
-                                      )
-                                    : Row(
-                                        spacing: 4,
-                                        children: [
-                                          MyText(
-                                            text: 'Achieved',
-                                            size: 12,
-                                            weight: FontWeight.w600,
-                                          ),
-                                          Image.asset(
-                                            Assets.imagesAchieved,
-                                            height: 16,
-                                          ),
-                                        ],
-                                      ),
-                              ],
-                            ),
-                            if (index != 1)
-                              Container(
-                                height: 1,
-                                color: kBorderColor,
-                                margin: EdgeInsets.symmetric(vertical: 12),
-                              ),
-                          ],
-                        );
-                      }),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 16),
-
-              Padding(
-                padding: AppSizes.HORIZONTAL,
-                child: CustomCard(
-                  child: Column(
-                    children: [
-                      Row(
-                        spacing: 4,
-                        children: [
-                          Expanded(
-                            child: MyText(
-                              text: 'School & Reports',
-                              size: 18,
-                              weight: FontWeight.w700,
-                              fontFamily: AppFonts.balsamiqSans,
-                            ),
-                          ),
-                          Image.asset(Assets.imagesConnectSchool, height: 16),
-                          MyText(
-                            text: 'Connect School',
-                            size: 14,
-                            weight: FontWeight.w600,
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 16),
-                      ...List.generate(3, (index) {
-                        final List<Map<String, dynamic>> features = [
-                          {
-                            'name': 'Reading Comprehension Q1',
-                            'status': 'New',
-                            'color': kGreenColorDark,
-                            'date': 'Oct 26, 2023',
-                          },
-                          {
-                            'name': 'Vocabulary Assessment',
-                            'status': 'Viewed',
-                            'color': kWhiteColor,
-                            'date': 'Sep 15, 2023',
-                          },
-                          {
-                            'name': 'Reading Log Summary',
-                            'status': 'Viewed',
-                            'color': kWhiteColor,
-                            'date': 'Aug 01, 2023',
-                          },
-                        ];
-                        return Column(
-                          children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              spacing: 14,
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      MyText(
-                                        text: features[index]['name'],
-                                        size: 14,
-                                        weight: FontWeight.w500,
-                                        paddingBottom: 6,
-                                      ),
-                                      MyText(
-                                        text: features[index]['date'],
-                                        size: 12,
-                                        color: kQuaternaryColor,
-                                        weight: FontWeight.w500,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 4,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: features[index]['color'],
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  child: MyText(
-                                    text: features[index]['status'],
-                                    size: 12,
-                                    color: kBlackColor,
-                                    weight: FontWeight.w500,
-                                  ),
-                                ),
-                                Image.asset(
-                                  Assets.imagesArrowNextIos,
-                                  height: 16,
-                                  color: kTertiaryColor,
-                                ),
-                              ],
-                            ),
-                            if (index != 2)
-                              Container(
-                                height: 1,
-                                color: kBorderColor,
-                                margin: EdgeInsets.symmetric(vertical: 12),
-                              ),
-                          ],
-                        );
-                      }),
-                      SizedBox(height: 20),
-                      MyButton(
-                        buttonText: 'Generate New Report',
-                        onTap: () {},
-                        height: 40,
-                        textSize: 14,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 16),
-
-              Padding(
-                padding: AppSizes.HORIZONTAL,
-                child: CustomCard(
+                child: CustomCard2(
+                  padding: 16,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       MyText(
-                        text: 'Account & Subscription',
-                        size: 20,
-                        fontFamily: AppFonts.balsamiqSans,
+                        text: 'Reading Distribution by Genre',
+                        size: 16,
+                        paddingBottom: 8,
                         weight: FontWeight.w700,
-                        paddingBottom: 6,
+                        fontFamily: AppFonts.balsamiqSans,
                       ),
                       MyText(
-                        text: 'Subscription Status:',
+                        text: 'Class reading preferences by genre',
                         size: 14,
-                        weight: FontWeight.w600,
-                        paddingBottom: 8,
+                        weight: FontWeight.w500,
+                        color: kQuaternaryColor,
                       ),
-                      Row(
-                        children: [
-                          MyButton(
-                            width: 110,
-                            bgColor: kRedColor,
-                            buttonText: 'Premium Active',
-                            onTap: () {},
-                            height: 24,
-                            radius: 50,
-                            textSize: 12,
-                          ),
-                        ],
+                      Container(
+                        height: 1,
+                        color: kBorderColor,
+                        margin: EdgeInsets.symmetric(vertical: 10),
+                      ),
+                      SizedBox(height: 16),
+                      SizedBox(
+                        height: 200,
+                        child: SfCircularChart(
+                          margin: EdgeInsets.zero,
+                          series: <CircularSeries<_GenreDistribution, String>>[
+                            DoughnutSeries<_GenreDistribution, String>(
+                              dataSource: _generateGenreData(),
+                              xValueMapper: (d, _) => d.genre,
+                              yValueMapper: (d, _) => d.percentage,
+                              pointColorMapper: (d, _) => d.color,
+                              innerRadius: '70%',
+                              radius: '80%',
+                              enableTooltip: true,
+                              dataLabelSettings: DataLabelSettings(
+                                isVisible: true,
+                                labelPosition: ChartDataLabelPosition.outside,
+                                connectorLineSettings: ConnectorLineSettings(
+                                  length: '10%',
+                                ),
+                                textStyle: TextStyle(
+                                  fontSize: 10,
+                                  color: isDark
+                                      ? kQuaternaryColorDark
+                                      : kQuaternaryColor,
+                                ),
+                              ),
+                              dataLabelMapper: (d, _) =>
+                                  '${d.genre}\n${d.percentage.toInt()}%',
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(height: 12),
-
-                      Row(
-                        children: [
-                          Image.asset(Assets.imagesBilling, height: 18),
-                          SizedBox(width: 8),
-                          Expanded(
-                            child: RichText(
-                              text: TextSpan(
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: kTertiaryColor,
-                                  fontFamily: AppFonts.nunito,
-                                  fontWeight: FontWeight.w600,
-                                ),
+                      Wrap(
+                        spacing: 12,
+                        runSpacing: 8,
+                        alignment: WrapAlignment.center,
+                        children: _generateGenreData()
+                            .map(
+                              (e) => Row(
+                                mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  TextSpan(
-                                    text: 'Next Billing Date: ',
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w600,
+                                  Container(
+                                    width: 8,
+                                    height: 8,
+                                    decoration: BoxDecoration(
+                                      color: e.color,
+                                      borderRadius: BorderRadius.circular(2),
                                     ),
                                   ),
-                                  TextSpan(
-                                    text: 'December 15, 2024',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                  SizedBox(width: 4),
+                                  MyText(
+                                    text: e.genre,
+                                    color: isDark
+                                        ? kQuaternaryColorDark
+                                        : kQuaternaryColor,
+                                    size: 11,
+                                  ),
+                                ],
+                              ),
+                            )
+                            .toList(),
+                      ),
+                      SizedBox(height: 12),
+                      MyText(
+                        text: 'Top 5 genres read by the class',
+                        size: 14,
+                        textAlign: TextAlign.center,
+                        weight: FontWeight.w500,
+                        color: isDark ? kQuaternaryColorDark : kQuaternaryColor,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 16),
+              Padding(
+                padding: AppSizes.HORIZONTAL,
+                child: CustomCard2(
+                  padding: 16,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      MyText(
+                        text: 'Top Performers & Encouragement',
+                        size: 16,
+                        paddingBottom: 8,
+                        weight: FontWeight.w700,
+                        fontFamily: AppFonts.balsamiqSans,
+                      ),
+                      MyText(
+                        text: 'Recognize and motivate high-achievers',
+                        size: 14,
+                        weight: FontWeight.w500,
+                        color: kQuaternaryColor,
+                      ),
+                      Container(
+                        height: 1,
+                        color: kBorderColor,
+                        margin: EdgeInsets.symmetric(vertical: 14),
+                      ),
+
+                      Row(
+                        spacing: 8,
+                        children: [
+                          Expanded(
+                            child: CustomCard(
+                              padding: 10,
+                              child: Column(
+                                spacing: 12,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Row(
+                                    children: [
+                                      CommonImageView(
+                                        height: 30,
+                                        width: 30,
+                                        radius: 100,
+                                        url: dummyImg,
+                                      ),
+                                      SizedBox(width: 8),
+                                      Expanded(
+                                        child: MyText(
+                                          text: 'Emily R.',
+                                          size: 14,
+                                          weight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        Assets.imagesBolt,
+                                        height: 16,
+                                      ),
+                                      SizedBox(width: 8),
+                                      Expanded(
+                                        child: MyText(
+                                          text: 'Highest Growth',
+                                          size: 12,
+                                          color: isDark
+                                              ? kQuaternaryColorDark
+                                              : kQuaternaryColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: CustomCard(
+                              padding: 10,
+                              child: Column(
+                                spacing: 12,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Row(
+                                    children: [
+                                      CommonImageView(
+                                        height: 30,
+                                        width: 30,
+                                        radius: 100,
+                                        url: dummyImg,
+                                      ),
+                                      SizedBox(width: 8),
+                                      Expanded(
+                                        child: MyText(
+                                          text: 'Emily R.',
+                                          size: 14,
+                                          weight: FontWeight.w600,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Image.asset(
+                                        Assets.imagesBolt,
+                                        height: 16,
+                                      ),
+                                      SizedBox(width: 8),
+                                      Expanded(
+                                        child: MyText(
+                                          text: 'Most Books Read',
+                                          size: 12,
+                                          color: isDark
+                                              ? kQuaternaryColorDark
+                                              : kQuaternaryColor,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
@@ -1138,34 +626,192 @@ class ParentViewChildDb extends StatelessWidget {
                           ),
                         ],
                       ),
+                      SizedBox(height: 12),
+                      CustomCard(
+                        child: Column(
+                          spacing: 12,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Row(
+                              children: [
+                                CommonImageView(
+                                  height: 30,
+                                  width: 30,
+                                  radius: 100,
+                                  url: dummyImg,
+                                ),
+                                SizedBox(width: 8),
+                                Expanded(
+                                  child: MyText(
+                                    text: 'Emily R.',
+                                    size: 14,
+                                    weight: FontWeight.w600,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Image.asset(Assets.imagesBolt, height: 16),
+                                SizedBox(width: 8),
+                                Expanded(
+                                  child: MyText(
+                                    text: 'Star Comprehension',
+                                    size: 12,
+                                    color: isDark
+                                        ? kQuaternaryColorDark
+                                        : kQuaternaryColor,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 18),
+                      MyButton(
+                        buttonText: 'Send Encouragement',
+                        onTap: () {},
+                        height: 40,
+                        textSize: 14,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: 16),
+              Padding(
+                padding: AppSizes.HORIZONTAL,
+                child: CustomCard2(
+                  padding: 16,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      MyText(
+                        text: 'Class Growth Over Time',
+                        size: 16,
+                        paddingBottom: 8,
+                        weight: FontWeight.w700,
+                        fontFamily: AppFonts.balsamiqSans,
+                      ),
+                      MyText(
+                        text:
+                            'Overall progress of the class\'s learning journey',
+                        size: 14,
+                        weight: FontWeight.w500,
+                        color: kQuaternaryColor,
+                      ),
                       Container(
                         height: 1,
                         color: kBorderColor,
-                        margin: EdgeInsets.symmetric(vertical: 12),
+                        margin: EdgeInsets.symmetric(vertical: 10),
                       ),
-                      MyButton(
-                        bgColor: kRedColor,
-                        buttonText: 'Manage Subscription',
-                        onTap: () {},
-                        height: 40,
-                        textSize: 14,
+
+                      SizedBox(
+                        height: 160,
+                        child: SfCartesianChart(
+                          borderWidth: 0,
+                          plotAreaBorderWidth: 0,
+                          margin: EdgeInsets.zero,
+                          primaryXAxis: CategoryAxis(
+                            plotOffset: 16,
+                            maximum: 5,
+                            axisLine: AxisLine(width: 0),
+                            majorTickLines: MajorTickLines(width: 0),
+                            majorGridLines: MajorGridLines(width: 0),
+                            labelStyle: TextStyle(
+                              fontSize: 10,
+                              color: kQuaternaryColor,
+                            ),
+                          ),
+                          primaryYAxis: NumericAxis(
+                            minimum: 0,
+                            labelStyle: TextStyle(
+                              fontSize: 10,
+                              color: kQuaternaryColor,
+                            ),
+                            plotOffset: 16,
+                            axisLine: AxisLine(width: 0),
+                            minorTickLines: MinorTickLines(width: 0),
+                            minorGridLines: MinorGridLines(width: 0),
+                            majorTickLines: MajorTickLines(width: 0),
+                            majorGridLines: MajorGridLines(width: 0),
+                            maximum: 100,
+                            interval: 25,
+                          ),
+                          series: <CartesianSeries<dynamic, dynamic>>[
+                            AreaSeries<_ClassGrowthTime, dynamic>(
+                              name: '',
+                              dataSource: _generateGrowthSampleData(),
+                              xValueMapper: (d, i) => d.monthLabel,
+                              yValueMapper: (d, i) => d.percentage * 60,
+                              color: kSecondaryColor,
+                              borderWidth: 2,
+                              gradient: LinearGradient(
+                                colors: [
+                                  kRedColor.withOpacity(0.4),
+                                  kRedColor.withOpacity(0.1),
+                                ],
+                                begin: Alignment.topCenter,
+                                end: Alignment.bottomCenter,
+                              ),
+                              enableTooltip: true,
+                            ),
+                          ],
+                        ),
                       ),
-                      SizedBox(height: 12),
-                      MyButton(
-                        bgColor: kWhiteColor,
-                        textColor: kBlackColor,
-                        buttonText: 'Update Profile',
-                        onTap: () {},
-                        height: 40,
-                        textSize: 14,
+                      SizedBox(height: 24),
+                      Row(
+                        spacing: 8,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              color: kRedColor,
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(2),
+                            ),
+                          ),
+                          MyText(
+                            text: 'Average Score',
+                            color: isDark
+                                ? kQuaternaryColorDark
+                                : kQuaternaryColor,
+                            size: 12,
+                          ),
+                        ],
                       ),
-                      SizedBox(height: 12),
-                      MyButton(
-                        bgColor: kRedColorDark2,
-                        buttonText: 'Logout',
-                        onTap: () {},
-                        height: 40,
-                        textSize: 14,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12),
+                        child: Center(
+                          child: RichText(
+                            textAlign: TextAlign.center,
+                            text: TextSpan(
+                              style: TextStyle(
+                                color: isDark
+                                    ? kQuaternaryColorDark
+                                    : kQuaternaryColor,
+                                fontSize: 14,
+                                fontFamily: AppFonts.balsamiqSans,
+                              ),
+                              children: [
+                                const TextSpan(
+                                  text: 'Class average score increased by ',
+                                ),
+                                TextSpan(
+                                  text: '+15%',
+                                  style: TextStyle(
+                                    color: kRedColor,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const TextSpan(text: ' this semester.'),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),

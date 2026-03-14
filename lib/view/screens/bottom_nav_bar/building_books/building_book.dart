@@ -26,7 +26,11 @@ class BuildingBook extends StatelessWidget {
       final isDark = ThemeController.to.isDarkMode.value;
       return CustomContainer(
         child: Scaffold(
-          appBar: simpleAppBar(title: 'Building Book', haveLeading: false),
+          appBar: simpleAppBar(
+            title: 'Building Book',
+            haveLeading: false,
+            centerTitle: false,
+          ),
           body: ListView(
             shrinkWrap: true,
             padding: AppSizes.DEFAULT,
@@ -53,7 +57,14 @@ class BuildingBook extends StatelessWidget {
                             weight: FontWeight.w700,
                           ),
                         ),
-                        Image.asset(Assets.imagesPencil, height: 16),
+                        GestureDetector(
+                          onTap: () => Get.to(() => EditStory()),
+                          child: Image.asset(
+                            Assets.imagesPencil,
+                            height: 16,
+                            color: kTertiaryColor,
+                          ),
+                        ),
                       ],
                     ),
                     MyText(
@@ -208,9 +219,7 @@ class BuildingBook extends StatelessWidget {
                         color: isDark ? kWhiteColor : null,
                       ),
                       GestureDetector(
-                        onTap: () {
-                          Get.to(() => EditStory());
-                        },
+                        onTap: () {},
                         child: Image.asset(
                           Assets.imagesEdit,
                           height: 16,

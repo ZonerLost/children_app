@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:story_spark/config/routes/routes.dart';
 import 'package:get/get.dart';
 import 'package:story_spark/config/theme/theme_controller.dart';
+import 'package:story_spark/controller/app_mode_controller.dart';
 import 'config/theme/light_theme.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Get.put(ThemeController());
+  Get.put(AppModeController());
   runApp(MyApp());
 }
 

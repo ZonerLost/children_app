@@ -18,6 +18,7 @@ import 'package:story_spark/view/widgets/common_image_view_widget.dart';
 import 'package:story_spark/view/widgets/custom_app_bar.dart';
 import 'package:story_spark/view/widgets/custom_container_widget.dart';
 import 'package:story_spark/view/widgets/my_text_widget.dart';
+import 'package:story_spark/controller/app_mode_controller.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -29,7 +30,7 @@ class BottomNavBar extends StatefulWidget {
 class _BottomNavBarState extends State<BottomNavBar> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   int _currentIndex = 0;
-  bool isParentMode = false;
+  final appModeController = AppModeController.to;
   void _getCurrentIndex(int index) => setState(() {
     _currentIndex = index;
   });
@@ -41,84 +42,25 @@ class _BottomNavBarState extends State<BottomNavBar> {
       {'icon': Assets.imagesMyLibrary, 'label': 'My Library'},
       {'icon': Assets.imagesCoach, 'label': 'Coach'},
       {'icon': Assets.imagesBookBuilding, 'label': 'Book Building'},
-      {'icon': Assets.imagesRewards, 'label': 'Rewards'},
-    ];
-
-    final List<Widget> _screens = [
-      Home(),
-      MyLibrary(),
-      ProsodyCoach(),
-      BuildingBook(),
-      Achievements(),
+      {'icon': Assets.imagesRewards, 'label': 'Dashboard'},
     ];
 
     return Obx(() {
       final isDark = ThemeController.to.isDarkMode.value;
+      final isParentMode = appModeController.isParentMode.value;
+      final List<Widget> _screens = [
+        Home(),
+        MyLibrary(),
+        ProsodyCoach(),
+        BuildingBook(),
+        isParentMode ? ParentDashboard() : ChildDashboard(),
+      ];
       return CustomContainer(
         child: Scaffold(
-          appBar: _currentIndex == 0
-              ? simpleAppBar(
-                  haveLeading: false,
-                  title: isParentMode ? 'Parents Dashboard' : 'Story Spark',
-                  centerTitle: false,
-                  actions: [
-                    Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          Get.to(() => Settings());
-                        },
-                        child: Image.asset(Assets.imagesSettings, height: 24),
-                      ),
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        MyText(
-                          text: isParentMode ? 'Parent Mode' : 'Child Mode',
-                          size: 12,
-                          weight: FontWeight.w500,
-                          color: kQuaternaryColor,
-                        ),
-                        SizedBox(
-                          width: 30,
-                          height: 24,
-                          child: Transform.scale(
-                            scale: 0.62,
-                            alignment: Alignment.centerRight,
-                            child: SizedBox(
-                              height: 24 / 0.62,
-                              width: 30 / 0.62,
-                              child: CupertinoSwitch(
-                                value: isParentMode,
-                                onChanged: (value) {
-                                  setState(() {
-                                    isParentMode = !isParentMode;
-                                  });
-                                },
-                                activeTrackColor: kOrangeColor,
-                                inactiveTrackColor: kWhiteColor.withValues(
-                                  alpha: 0.7,
-                                ),
-                                thumbColor: kWhiteColor,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-
-                    SizedBox(width: 20),
-                  ],
-                )
-              : null,
-          // extendBodyBehindAppBar: true,
-          // extendBody: true,
           key: _scaffoldKey,
           resizeToAvoidBottomInset: false,
-          body: isParentMode ? ParentDashboard() : _screens[_currentIndex],
-          bottomNavigationBar: isParentMode
-              ? null
-              : _buildNavBar(_items, isDark),
+          body: _screens[_currentIndex],
+          bottomNavigationBar: _buildNavBar(_items, isDark),
         ),
       );
     });

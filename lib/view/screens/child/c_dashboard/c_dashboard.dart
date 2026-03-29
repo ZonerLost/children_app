@@ -12,7 +12,7 @@ import 'package:story_spark/constants/app_fonts.dart';
 import 'package:story_spark/constants/app_images.dart' show Assets;
 import 'package:story_spark/constants/app_sizes.dart';
 import 'package:story_spark/main.dart';
-import 'package:story_spark/view/screens/achievements/achievements.dart';
+import 'package:story_spark/view/screens/child/c_achievements/c_achievements.dart';
 import 'package:story_spark/view/widgets/common_image_view_widget.dart';
 import 'package:story_spark/view/widgets/custom_app_bar.dart';
 import 'package:story_spark/view/widgets/custom_card_widget.dart';
@@ -21,8 +21,8 @@ import 'package:story_spark/view/widgets/my_button_widget.dart';
 import 'package:story_spark/view/widgets/my_text_field_widget.dart';
 import 'package:story_spark/view/widgets/my_text_widget.dart';
 
-class ChildDashboard extends StatelessWidget {
-  ChildDashboard({super.key});
+class CDashboard extends StatelessWidget {
+  CDashboard({super.key});
   final appModeController = AppModeController.to;
 
   @override
@@ -871,7 +871,7 @@ class ChildDashboard extends StatelessWidget {
               _HeadingTile(
                 title: 'My Achievements',
                 onTap: () {
-                  Get.to(() => Achievements());
+                  Get.to(() => CAchievements());
                 },
                 haveTrailing: false,
               ),

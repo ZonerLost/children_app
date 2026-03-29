@@ -3,7 +3,7 @@ import 'package:story_spark/constants/app_colors.dart';
 import 'package:story_spark/constants/app_fonts.dart';
 import 'package:story_spark/constants/app_images.dart';
 import 'package:story_spark/constants/app_sizes.dart';
-import 'package:story_spark/view/screens/ai_suggested/ai_suggested.dart';
+import 'package:story_spark/view/screens/bottom_nav_bar/my_library/ai_suggested.dart';
 import 'package:story_spark/view/screens/parent/p_readling_logs/p_reading_logs.dart';
 import 'package:story_spark/view/widgets/custom_app_bar.dart';
 import 'package:story_spark/view/widgets/custom_card_widget.dart';

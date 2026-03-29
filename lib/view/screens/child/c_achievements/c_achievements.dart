@@ -10,8 +10,8 @@ import 'package:story_spark/view/widgets/my_text_widget.dart';
 import 'package:get/get.dart';
 import 'package:story_spark/config/theme/theme_controller.dart';
 
-class Achievements extends StatelessWidget {
-  const Achievements({super.key});
+class CAchievements extends StatelessWidget {
+  const CAchievements({super.key});
 
   @override
   Widget build(BuildContext context) {

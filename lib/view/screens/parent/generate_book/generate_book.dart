@@ -3,7 +3,10 @@ import 'package:story_spark/constants/app_fonts.dart';
 import 'package:story_spark/constants/app_images.dart';
 import 'package:story_spark/constants/app_sizes.dart';
 import 'package:story_spark/main.dart';
-import 'package:story_spark/view/screens/ai_suggested/ai_suggested.dart';
+import 'package:story_spark/view/screens/bottom_nav_bar/my_library/ai_suggested.dart';
+import 'package:story_spark/view/screens/parent/generate_book/gen_with_ai.dart';
+import 'package:story_spark/view/screens/parent/generate_book/start_typing.dart';
+import 'package:story_spark/view/screens/parent/generate_book/write_and_upload.dart';
 import 'package:story_spark/view/screens/settings/settings.dart';
 import 'package:story_spark/view/widgets/common_image_view_widget.dart';
 import 'package:story_spark/view/widgets/custom_app_bar.dart';
@@ -49,55 +52,62 @@ class _GenerateBookState extends State<GenerateBook> {
                   spacing: 12,
                   children: [
                     Expanded(
-                      child: CustomCard3(
-                        padding: 16,
-                        radius: 16,
-                        child: Column(
-                          spacing: 12,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(Assets.imagesGenerate, height: 32),
-                            MyText(
-                              text: 'Start Typing',
-                              size: 12,
-                              fontFamily: AppFonts.balsamiqSans,
-                            ),
-                            MyText(
-                              text:
-                                  'Start From a blank Page and let your fingers do the storytelling',
-                              size: 12,
-                              color: isDark
-                                  ? kQuaternaryColorDark
-                                  : kQuaternaryColor,
-                            ),
-                          ],
+                      child: GestureDetector(
+                        onTap: () => Get.to(() => StartTyping()),
+                        child: CustomCard3(
+                          padding: 16,
+                          radius: 16,
+                          child: Column(
+                            spacing: 12,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset(Assets.imagesGenerate, height: 32),
+                              MyText(
+                                text: 'Start Typing',
+                                size: 12,
+                                fontFamily: AppFonts.balsamiqSans,
+                              ),
+                              MyText(
+                                text:
+                                    'Start From a blank Page and let your fingers do the storytelling',
+                                size: 12,
+                                color: isDark
+                                    ? kQuaternaryColorDark
+                                    : kQuaternaryColor,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
 
                     Expanded(
-                      child: CustomCard3(
-                        padding: 16,
-                        radius: 16,
-                        child: Column(
-                          spacing: 12,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Image.asset(Assets.imagesGenerate, height: 32),
-                            MyText(
-                              text: 'Start Typing',
-                              size: 12,
-                              fontFamily: AppFonts.balsamiqSans,
-                            ),
-                            MyText(
-                              text:
-                                  'Start From a blank Page and let your fingers do the storytelling',
-                              size: 12,
-                              color: isDark
-                                  ? kQuaternaryColorDark
-                                  : kQuaternaryColor,
-                            ),
-                          ],
+                      child: GestureDetector(
+                        onTap: () => Get.to(() => WriteAndUpload()),
+
+                        child: CustomCard3(
+                          padding: 16,
+                          radius: 16,
+                          child: Column(
+                            spacing: 12,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset(Assets.imagesGenerate, height: 32),
+                              MyText(
+                                text: 'Write and Upload',
+                                size: 12,
+                                fontFamily: AppFonts.balsamiqSans,
+                              ),
+                              MyText(
+                                text:
+                                    'Handwrite your story, snap a photo of your work and watch it turn into a book',
+                                size: 12,
+                                color: isDark
+                                    ? kQuaternaryColorDark
+                                    : kQuaternaryColor,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -107,26 +117,31 @@ class _GenerateBookState extends State<GenerateBook> {
               SizedBox(height: 12),
               Padding(
                 padding: AppSizes.HORIZONTAL,
-                child: CustomCard3(
-                  padding: 16,
-                  radius: 16,
-                  child: Column(
-                    spacing: 12,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset(Assets.imagesGenerate, height: 32),
-                      MyText(
-                        text: 'Start Typing',
-                        size: 12,
-                        fontFamily: AppFonts.balsamiqSans,
-                      ),
-                      MyText(
-                        text:
-                            'Start From a blank Page and let your fingers do the storytelling',
-                        size: 12,
-                        color: isDark ? kQuaternaryColorDark : kQuaternaryColor,
-                      ),
-                    ],
+                child: GestureDetector(
+                  onTap: () => Get.to(() => GenWithAi()),
+                  child: CustomCard3(
+                    padding: 16,
+                    radius: 16,
+                    child: Column(
+                      spacing: 12,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.asset(Assets.imagesGenerate, height: 32),
+                        MyText(
+                          text: 'Generate with Finn',
+                          size: 12,
+                          fontFamily: AppFonts.balsamiqSans,
+                        ),
+                        MyText(
+                          text:
+                              'Tell Finn your idea and build a magic story together',
+                          size: 12,
+                          color: isDark
+                              ? kQuaternaryColorDark
+                              : kQuaternaryColor,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

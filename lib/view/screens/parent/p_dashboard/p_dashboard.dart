@@ -11,7 +11,7 @@ import 'package:story_spark/constants/app_sizes.dart';
 import 'package:story_spark/controller/app_mode_controller.dart';
 import 'package:story_spark/main.dart';
 import 'package:story_spark/view/screens/bottom_nav_bar/home/story_details.dart';
-import 'package:story_spark/view/screens/child/child_dashboard/child_dashboard.dart';
+import 'package:story_spark/view/screens/child/c_dashboard/c_dashboard.dart';
 import 'package:story_spark/view/screens/parent/p_dashboard/p_add_child.dart';
 import 'package:story_spark/view/screens/parent/p_dashboard/p_assign_book.dart';
 import 'package:story_spark/view/screens/parent/p_readling_logs/p_reading_logs.dart';

@@ -10,7 +10,7 @@ import 'package:story_spark/main.dart';
 import 'package:story_spark/view/screens/bottom_nav_bar/building_books/ai_writing_assistant.dart';
 import 'package:story_spark/view/screens/bottom_nav_bar/building_books/edit_story.dart';
 import 'package:story_spark/view/screens/bottom_nav_bar/prosody_coach/start_practice.dart';
-import 'package:story_spark/view/screens/child/child_dashboard/celebrated_achievements.dart';
+import 'package:story_spark/view/screens/parent/p_view_child_stats/p_view_child_achievements.dart';
 import 'package:story_spark/view/screens/parent/p_view_child_stats/p_view_child_insights.dart';
 import 'package:story_spark/view/screens/parent/p_view_child_stats/p_view_child_reading_journey.dart';
 import 'package:story_spark/view/widgets/common_image_view_widget.dart';
@@ -305,7 +305,7 @@ class PViewChildStats extends StatelessWidget {
                       height: 48,
                       buttonText: 'View Certificates',
                       onTap: () {
-                        Get.to(() => CelebratedAchievements());
+                        Get.to(() => PViewChildAchievements());
                       },
                     ),
                   ],

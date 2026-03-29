@@ -6,12 +6,12 @@ import 'package:story_spark/constants/app_colors.dart';
 import 'package:story_spark/constants/app_images.dart';
 import 'package:story_spark/constants/app_sizes.dart';
 import 'package:story_spark/main.dart';
-import 'package:story_spark/view/screens/achievements/achievements.dart';
+import 'package:story_spark/view/screens/child/c_achievements/c_achievements.dart';
 import 'package:story_spark/view/screens/bottom_nav_bar/building_books/building_book.dart';
 import 'package:story_spark/view/screens/bottom_nav_bar/home/home.dart';
 import 'package:story_spark/view/screens/bottom_nav_bar/my_library/my_library.dart';
 import 'package:story_spark/view/screens/bottom_nav_bar/prosody_coach/prosody_coach.dart';
-import 'package:story_spark/view/screens/child/child_dashboard/child_dashboard.dart';
+import 'package:story_spark/view/screens/child/c_dashboard/c_dashboard.dart';
 import 'package:story_spark/view/screens/parent/p_dashboard/p_dashboard.dart';
 import 'package:story_spark/view/screens/parent/p_dashboard/parent_dashboard_old.dart';
 import 'package:story_spark/view/screens/bottom_nav_bar/prosody_coach/prosody_coach_old.dart';
@@ -55,7 +55,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         MyLibrary(),
         ProsodyCoach(),
         BuildingBook(),
-        isParentMode ? PDashboard() : ChildDashboard(),
+        isParentMode ? PDashboard() : CDashboard(),
       ];
       return CustomContainer(
         child: Scaffold(

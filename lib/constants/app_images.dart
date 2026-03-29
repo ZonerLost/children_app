@@ -202,6 +202,14 @@ class Assets {
   /// assets/images/book_icon.png
   static const String imagesBookIcon = "assets/images/book_icon.png";
 
+  /// Assets for imagesBookPage
+  /// assets/images/book_page.png
+  static const String imagesBookPage = "assets/images/book_page.png";
+
+  /// Assets for imagesBookPreview
+  /// assets/images/book_preview.png
+  static const String imagesBookPreview = "assets/images/book_preview.png";
+
   /// Assets for imagesBookReadingIcon
   /// assets/images/book_reading_icon.png
   static const String imagesBookReadingIcon = "assets/images/book_reading_icon.png";
@@ -477,6 +485,10 @@ class Assets {
   /// Assets for imagesDarkThemeBg
   /// assets/images/dark_theme_bg.png
   static const String imagesDarkThemeBg = "assets/images/dark_theme_bg.png";
+
+  /// Assets for imagesDelete
+  /// assets/images/delete.png
+  static const String imagesDelete = "assets/images/delete.png";
 
   /// Assets for imagesDownArrow
   /// assets/images/down_arrow.png
@@ -954,6 +966,10 @@ class Assets {
   /// assets/images/generate.png
   static const String imagesGenerate = "assets/images/generate.png";
 
+  /// Assets for imagesGenerating
+  /// assets/images/generating.png
+  static const String imagesGenerating = "assets/images/generating.png";
+
   /// Assets for imagesGirl
   /// assets/images/girl.png
   static const String imagesGirl = "assets/images/girl.png";
@@ -1126,6 +1142,10 @@ class Assets {
   /// assets/images/meta_wolf.png
   static const String imagesMetaWolf = "assets/images/meta_wolf.png";
 
+  /// Assets for imagesMic
+  /// assets/images/mic.png
+  static const String imagesMic = "assets/images/mic.png";
+
   /// Assets for imagesMicOn
   /// assets/images/mic_on.png
   static const String imagesMicOn = "assets/images/mic_on.png";
@@ -1282,9 +1302,17 @@ class Assets {
   /// assets/images/pages.png
   static const String imagesPages = "assets/images/pages.png";
 
+  /// Assets for imagesPaint
+  /// assets/images/paint.png
+  static const String imagesPaint = "assets/images/paint.png";
+
   /// Assets for imagesPants
   /// assets/images/pants.png
   static const String imagesPants = "assets/images/pants.png";
+
+  /// Assets for imagesPara
+  /// assets/images/para.png
+  static const String imagesPara = "assets/images/para.png";
 
   /// Assets for imagesParentView
   /// assets/images/parent_view.png
@@ -1313,6 +1341,10 @@ class Assets {
   /// Assets for imagesPredictedGrowth
   /// assets/images/predicted_growth.png
   static const String imagesPredictedGrowth = "assets/images/predicted_growth.png";
+
+  /// Assets for imagesPreview
+  /// assets/images/preview.png
+  static const String imagesPreview = "assets/images/preview.png";
 
   /// Assets for imagesPrevious
   /// assets/images/previous.png
@@ -1441,6 +1473,10 @@ class Assets {
   /// Assets for imagesS9
   /// assets/images/s9.png
   static const String imagesS9 = "assets/images/s9.png";
+
+  /// Assets for imagesSave
+  /// assets/images/save.png
+  static const String imagesSave = "assets/images/save.png";
 
   /// Assets for imagesScience
   /// assets/images/science.png
@@ -1593,6 +1629,10 @@ class Assets {
   /// Assets for imagesUnlocked
   /// assets/images/unlocked.png
   static const String imagesUnlocked = "assets/images/unlocked.png";
+
+  /// Assets for imagesUploadPhoto
+  /// assets/images/upload_photo.png
+  static const String imagesUploadPhoto = "assets/images/upload_photo.png";
 
   /// Assets for imagesVocabularyExplorer
   /// assets/images/vocabulary_explorer.png

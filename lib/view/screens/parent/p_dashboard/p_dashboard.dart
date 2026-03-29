@@ -12,7 +12,13 @@ import 'package:story_spark/controller/app_mode_controller.dart';
 import 'package:story_spark/main.dart';
 import 'package:story_spark/view/screens/bottom_nav_bar/home/story_details.dart';
 import 'package:story_spark/view/screens/child/child_dashboard/child_dashboard.dart';
-import 'package:story_spark/view/screens/parent/parent_view_child_db.dart';
+import 'package:story_spark/view/screens/parent/p_dashboard/p_add_child.dart';
+import 'package:story_spark/view/screens/parent/p_dashboard/p_assign_book.dart';
+import 'package:story_spark/view/screens/parent/p_readling_logs/p_reading_logs.dart';
+import 'package:story_spark/view/screens/parent/p_view_child_stats/p_view_child_insights.dart';
+import 'package:story_spark/view/screens/parent/p_view_child_stats/p_view_child_stats.dart';
+import 'package:story_spark/view/screens/parent/p_dashboard/parent_view_child_db.dart';
+import 'package:story_spark/view/screens/parent/p_vocabulary/p_vocabulary.dart';
 import 'package:story_spark/view/widgets/common_image_view_widget.dart';
 import 'package:story_spark/view/widgets/custom_app_bar.dart';
 import 'package:story_spark/view/widgets/custom_card_widget.dart';
@@ -57,8 +63,8 @@ List<_ReadingSample> _generateReadingData(
   });
 }
 
-class FamilyJourney extends StatelessWidget {
-  FamilyJourney({super.key});
+class PDashboard extends StatelessWidget {
+  PDashboard({super.key});
   final appModeController = AppModeController.to;
 
   @override
@@ -67,12 +73,73 @@ class FamilyJourney extends StatelessWidget {
       final isDark = ThemeController.to.isDarkMode.value;
       return CustomContainer(
         child: Scaffold(
-          appBar: simpleAppBar(title: 'Family Journey', centerTitle: false),
+          appBar: simpleAppBar(
+            haveLeading: false,
+            title: 'Parents Dashboard',
+            centerTitle: false,
+            actions: [
+              Center(
+                child: MyText(
+                  text: appModeController.isParentMode.value
+                      ? 'Parent View'
+                      : 'Child View',
+                  size: 12,
+                  color: isDark ? kHintColor : kOrangeColor,
+                ),
+              ),
+              Center(
+                child: Transform.scale(
+                  scale: 0.7,
+                  alignment: Alignment.centerRight,
+                  child: SizedBox(
+                    height: 24 / 0.7,
+                    width: 44 / 0.7,
+                    child: Obx(
+                      () => CupertinoSwitch(
+                        value: !appModeController.isParentMode.value,
+                        trackOutlineColor: WidgetStateProperty.all(
+                          kTertiaryColor,
+                        ),
+                        onChanged: (_) => appModeController.toggleMode(),
+                        activeTrackColor: kOrangeColor,
+                        inactiveTrackColor: kOrangeColor.withValues(alpha: 0.8),
+                        thumbColor: kWhiteColor,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(width: 16),
+            ],
+          ),
           body: ListView(
             shrinkWrap: true,
             padding: AppSizes.VERTICAL,
             physics: BouncingScrollPhysics(),
             children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  MyText(
+                    paddingLeft: 20,
+                    text: 'Children\'s',
+                    size: 18,
+                    weight: FontWeight.w700,
+                    fontFamily: AppFonts.balsamiqSans,
+                    paddingBottom: 10,
+                  ),
+                  MyText(
+                    onTap: () {
+                      Get.to(() => PViewChildInsights());
+                    },
+                    paddingRight: 20,
+                    text: 'Insights',
+                    size: 14,
+                    weight: FontWeight.w500,
+                    paddingBottom: 10,
+                  ),
+                ],
+              ),
               SizedBox(
                 height: 180,
                 child: ListView.separated(
@@ -95,7 +162,7 @@ class FamilyJourney extends StatelessWidget {
                               Center(
                                 child: GestureDetector(
                                   onTap: () {
-                                    Get.to(() => ParentViewChildDb());
+                                    Get.to(() => PViewChildStats());
                                   },
                                   child: CommonImageView(
                                     url: dummyImg,
@@ -141,6 +208,37 @@ class FamilyJourney extends StatelessWidget {
                       ),
                     );
                   },
+                ),
+              ),
+              SizedBox(height: 16),
+              Padding(
+                padding: AppSizes.HORIZONTAL,
+                child: Row(
+                  spacing: 12,
+                  children: [
+                    Expanded(
+                      child: MyButton(
+                        buttonText: 'Assign Book',
+                        onTap: () {
+                          Get.to(() => PAssignBook());
+                        },
+                        textSize: 14,
+                        radius: 8,
+                        height: 40,
+                      ),
+                    ),
+                    Expanded(
+                      child: MyButton(
+                        buttonText: 'Add Child',
+                        onTap: () {
+                          Get.to(() => PAddChild());
+                        },
+                        textSize: 14,
+                        radius: 8,
+                        height: 40,
+                      ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(height: 16),
@@ -616,52 +714,62 @@ class FamilyJourney extends StatelessWidget {
                         ];
                         return Column(
                           children: [
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              spacing: 14,
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: [
-                                      MyText(
-                                        text: features[index]['name'],
-                                        size: 14,
-                                        weight: FontWeight.w500,
-                                        paddingBottom: 6,
-                                      ),
-                                      MyText(
-                                        text: features[index]['date'],
-                                        size: 12,
-                                        color: kQuaternaryColor,
-                                        weight: FontWeight.w500,
-                                      ),
-                                    ],
+                            GestureDetector(
+                              onTap: () {
+                                index == 2
+                                    ? Get.to(() => PReadingLogs())
+                                    : index == 1
+                                    ? Get.to(() => PVocabulary())
+                                    : () {};
+                              },
+
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                spacing: 14,
+                                children: [
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.stretch,
+                                      children: [
+                                        MyText(
+                                          text: features[index]['name'],
+                                          size: 14,
+                                          weight: FontWeight.w500,
+                                          paddingBottom: 6,
+                                        ),
+                                        MyText(
+                                          text: features[index]['date'],
+                                          size: 12,
+                                          color: kQuaternaryColor,
+                                          weight: FontWeight.w500,
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                    vertical: 4,
+                                  Container(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                      vertical: 4,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: features[index]['color'],
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                    child: MyText(
+                                      text: features[index]['status'],
+                                      size: 12,
+                                      color: kBlackColor,
+                                      weight: FontWeight.w500,
+                                    ),
                                   ),
-                                  decoration: BoxDecoration(
-                                    color: features[index]['color'],
-                                    borderRadius: BorderRadius.circular(50),
+                                  Image.asset(
+                                    Assets.imagesArrowNextIos,
+                                    height: 16,
+                                    color: kTertiaryColor,
                                   ),
-                                  child: MyText(
-                                    text: features[index]['status'],
-                                    size: 12,
-                                    color: kBlackColor,
-                                    weight: FontWeight.w500,
-                                  ),
-                                ),
-                                Image.asset(
-                                  Assets.imagesArrowNextIos,
-                                  height: 16,
-                                  color: kTertiaryColor,
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                             if (index != 2)
                               Container(

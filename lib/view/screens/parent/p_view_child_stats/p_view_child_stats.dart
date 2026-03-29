@@ -11,8 +11,8 @@ import 'package:story_spark/view/screens/bottom_nav_bar/building_books/ai_writin
 import 'package:story_spark/view/screens/bottom_nav_bar/building_books/edit_story.dart';
 import 'package:story_spark/view/screens/bottom_nav_bar/prosody_coach/start_practice.dart';
 import 'package:story_spark/view/screens/child/child_dashboard/celebrated_achievements.dart';
-import 'package:story_spark/view/screens/child/child_dashboard/predicted_growth_insights.dart';
-import 'package:story_spark/view/screens/child/child_dashboard/reading_journey.dart';
+import 'package:story_spark/view/screens/parent/p_view_child_stats/p_view_child_insights.dart';
+import 'package:story_spark/view/screens/parent/p_view_child_stats/p_view_child_reading_journey.dart';
 import 'package:story_spark/view/widgets/common_image_view_widget.dart';
 import 'package:story_spark/view/widgets/custom_app_bar.dart';
 import 'package:story_spark/view/widgets/custom_card_widget.dart';
@@ -72,8 +72,8 @@ class _ReadingTimeGrowth {
   _ReadingTimeGrowth(this.month, this.minutes);
 }
 
-class ChildStatistics extends StatelessWidget {
-  const ChildStatistics({super.key});
+class PViewChildStats extends StatelessWidget {
+  const PViewChildStats({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +81,30 @@ class ChildStatistics extends StatelessWidget {
       final isDark = ThemeController.to.isDarkMode.value;
       return CustomContainer(
         child: Scaffold(
-          appBar: simpleAppBar(title: 'Statistics', centerTitle: false),
+          appBar: simpleAppBar(
+            titleSpacing: 0,
+            centerTitle: false,
+            titleWidget: Row(
+              spacing: 12,
+              children: [
+                CommonImageView(
+                  url: dummyImg,
+                  height: 38,
+                  width: 38,
+                  radius: 16,
+                ),
+                Expanded(
+                  child: MyText(
+                    text: 'Alice Reads',
+                    size: 20,
+                    fontFamily: AppFonts.balsamiqSans,
+                    color: kTertiaryColor,
+                    weight: FontWeight.w700,
+                  ),
+                ),
+              ],
+            ),
+          ),
           body: ListView(
             shrinkWrap: true,
             padding: AppSizes.DEFAULT,
@@ -140,69 +163,6 @@ class ChildStatistics extends StatelessWidget {
                     ),
                   );
                 },
-              ),
-              SizedBox(height: 12),
-              GestureDetector(
-                onTap: () {
-                  Get.to(() => PredictedGrowthInsights());
-                },
-                child: CustomCard(
-                  radius: 16,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: MyText(
-                          text: 'Predicted Growth & Insights',
-                          size: 16,
-                          weight: FontWeight.w700,
-                        ),
-                      ),
-                      Image.asset(Assets.imagesArrowNextIos, height: 24),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 12),
-              GestureDetector(
-                onTap: () {
-                  Get.to(() => ReadingJourney());
-                },
-                child: CustomCard(
-                  radius: 16,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: MyText(
-                          text: 'Your Reading Journey',
-                          size: 16,
-                          weight: FontWeight.w700,
-                        ),
-                      ),
-                      Image.asset(Assets.imagesArrowNextIos, height: 24),
-                    ],
-                  ),
-                ),
-              ),
-              SizedBox(height: 12),
-              GestureDetector(
-                onTap: () {
-                  Get.to(() => CelebratedAchievements());
-                },
-                child: CustomCard(
-                  radius: 16,
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: MyText(
-                          text: 'Celebrate Achievements!',
-                          size: 16,
-                          weight: FontWeight.w700,
-                        ),
-                      ),
-                      Image.asset(Assets.imagesArrowNextIos, height: 24),
-                    ],
-                  ),
-                ),
               ),
               MyText(
                 paddingTop: 24,
@@ -302,7 +262,7 @@ class ChildStatistics extends StatelessWidget {
               ),
               SizedBox(height: 16),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+                padding: EdgeInsets.symmetric(vertical: 16, horizontal: 20),
                 decoration: BoxDecoration(
                   color: Color(0xffF7706E),
                   borderRadius: BorderRadius.circular(12),
@@ -338,6 +298,15 @@ class ChildStatistics extends StatelessWidget {
                       size: 12,
                       weight: FontWeight.w500,
                       color: kBlackColor,
+                      paddingBottom: 24,
+                    ),
+                    MyButton(
+                      radius: 50,
+                      height: 48,
+                      buttonText: 'View Certificates',
+                      onTap: () {
+                        Get.to(() => CelebratedAchievements());
+                      },
                     ),
                   ],
                 ),

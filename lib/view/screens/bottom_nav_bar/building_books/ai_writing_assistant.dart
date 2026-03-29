@@ -127,9 +127,7 @@ class AiWritingAssistant extends StatelessWidget {
                         child: MyButton(
                           textSize: 14,
                           buttonText: 'Insert into Book',
-                          onTap: () {
-                            Get.to(() => BookComplete());
-                          },
+                          onTap: () {},
                           height: 40,
                           textColor: kTertiaryColor,
                           radius: 50,
@@ -140,7 +138,16 @@ class AiWritingAssistant extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(height: 24),
 
+            MyButton(
+              buttonText: 'Book Completed',
+              onTap: () {
+                Get.to(() => BookComplete());
+              },
+              textColor: kTertiaryColor,
+              radius: 50,
+            ),
             SizedBox(height: 100),
           ],
         ),

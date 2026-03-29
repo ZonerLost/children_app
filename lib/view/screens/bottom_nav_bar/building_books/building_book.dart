@@ -57,13 +57,10 @@ class BuildingBook extends StatelessWidget {
                             weight: FontWeight.w700,
                           ),
                         ),
-                        GestureDetector(
-                          onTap: () => Get.to(() => EditStory()),
-                          child: Image.asset(
-                            Assets.imagesPencil,
-                            height: 16,
-                            color: kTertiaryColor,
-                          ),
+                        Image.asset(
+                          Assets.imagesPencil,
+                          height: 16,
+                          color: kTertiaryColor,
                         ),
                       ],
                     ),
@@ -219,7 +216,7 @@ class BuildingBook extends StatelessWidget {
                         color: isDark ? kWhiteColor : null,
                       ),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () => Get.to(() => EditStory()),
                         child: Image.asset(
                           Assets.imagesEdit,
                           height: 16,

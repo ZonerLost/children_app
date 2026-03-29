@@ -12,7 +12,8 @@ import 'package:story_spark/view/screens/bottom_nav_bar/home/home.dart';
 import 'package:story_spark/view/screens/bottom_nav_bar/my_library/my_library.dart';
 import 'package:story_spark/view/screens/bottom_nav_bar/prosody_coach/prosody_coach.dart';
 import 'package:story_spark/view/screens/child/child_dashboard/child_dashboard.dart';
-import 'package:story_spark/view/screens/parent/parent_dashboard.dart';
+import 'package:story_spark/view/screens/parent/p_dashboard/p_dashboard.dart';
+import 'package:story_spark/view/screens/parent/p_dashboard/parent_dashboard_old.dart';
 import 'package:story_spark/view/screens/bottom_nav_bar/prosody_coach/prosody_coach_old.dart';
 import 'package:story_spark/view/screens/settings/settings.dart';
 import 'package:story_spark/view/widgets/common_image_view_widget.dart';
@@ -54,7 +55,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
         MyLibrary(),
         ProsodyCoach(),
         BuildingBook(),
-        isParentMode ? ParentDashboard() : ChildDashboard(),
+        isParentMode ? PDashboard() : ChildDashboard(),
       ];
       return CustomContainer(
         child: Scaffold(

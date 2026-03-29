@@ -5,7 +5,7 @@ import 'package:story_spark/constants/app_images.dart';
 import 'package:story_spark/constants/app_sizes.dart';
 import 'package:story_spark/main.dart';
 import 'package:story_spark/view/screens/ai_suggested/ai_suggested.dart';
-import 'package:story_spark/view/screens/child/vocabulary/reading_logs.dart';
+import 'package:story_spark/view/screens/parent/p_readling_logs/p_reading_logs.dart';
 import 'package:story_spark/view/widgets/common_image_view_widget.dart';
 import 'package:story_spark/view/widgets/custom_app_bar.dart';
 import 'package:story_spark/view/widgets/custom_card_widget.dart';
@@ -86,7 +86,6 @@ class CelebratedAchievements extends StatelessWidget {
                   final data = readingJourneyData[index];
                   return GestureDetector(
                     onTap: () {
-                      Get.to(() => ReadingLogs());
                     },
                     child: CustomCard(
                       child: Column(

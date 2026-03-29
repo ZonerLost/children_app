@@ -4,7 +4,7 @@ import 'package:story_spark/constants/app_fonts.dart';
 import 'package:story_spark/constants/app_images.dart';
 import 'package:story_spark/constants/app_sizes.dart';
 import 'package:story_spark/view/screens/ai_suggested/ai_suggested.dart';
-import 'package:story_spark/view/screens/child/vocabulary/reading_logs.dart';
+import 'package:story_spark/view/screens/parent/p_readling_logs/p_reading_logs.dart';
 import 'package:story_spark/view/widgets/custom_app_bar.dart';
 import 'package:story_spark/view/widgets/custom_card_widget.dart';
 import 'package:story_spark/view/widgets/custom_container_widget.dart';
@@ -16,8 +16,8 @@ import 'package:get/get.dart';
 import 'package:story_spark/config/theme/theme_controller.dart';
 import 'package:story_spark/view/widgets/story_thumbnail_widget.dart';
 
-class ReadingJourney extends StatelessWidget {
-  const ReadingJourney({super.key});
+class PViewChildReadingJourney extends StatelessWidget {
+  const PViewChildReadingJourney({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +83,6 @@ class ReadingJourney extends StatelessWidget {
                   final data = readingJourneyData[index];
                   return GestureDetector(
                     onTap: () {
-                      Get.to(() => ReadingLogs());
                     },
                     child: CustomCard(
                       child: Column(

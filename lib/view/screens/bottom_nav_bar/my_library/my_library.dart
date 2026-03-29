@@ -132,7 +132,11 @@ class _MyLibraryState extends State<MyLibrary> {
                       final bool selected = _currentIndex == index;
                       return Expanded(
                         child: GestureDetector(
-                          onTap: () => setState(() => _currentIndex = index),
+                          onTap: () {
+                            index == 1
+                                ? Get.to(() => AiSuggested())
+                                : setState(() => _currentIndex = index);
+                          },
                           child: Container(
                             padding: EdgeInsets.symmetric(
                               vertical: 9,

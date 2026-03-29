@@ -950,6 +950,10 @@ class Assets {
   /// assets/images/general.png
   static const String imagesGeneral = "assets/images/general.png";
 
+  /// Assets for imagesGenerate
+  /// assets/images/generate.png
+  static const String imagesGenerate = "assets/images/generate.png";
+
   /// Assets for imagesGirl
   /// assets/images/girl.png
   static const String imagesGirl = "assets/images/girl.png";

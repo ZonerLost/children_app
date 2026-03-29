@@ -57,8 +57,8 @@ List<_ReadingSample> _generateReadingData(
   });
 }
 
-class ReadingLogs extends StatelessWidget {
-  const ReadingLogs({super.key});
+class PReadingLogs extends StatelessWidget {
+  const PReadingLogs({super.key});
 
   @override
   Widget build(BuildContext context) {

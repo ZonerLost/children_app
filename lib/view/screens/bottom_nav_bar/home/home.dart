@@ -3,6 +3,7 @@ import 'package:story_spark/constants/app_fonts.dart';
 import 'package:story_spark/constants/app_images.dart';
 import 'package:story_spark/constants/app_sizes.dart';
 import 'package:story_spark/view/screens/ai_suggested/ai_suggested.dart';
+import 'package:story_spark/view/screens/generate_book/generate_book.dart';
 import 'package:story_spark/view/screens/settings/settings.dart';
 import 'package:story_spark/view/widgets/custom_app_bar.dart';
 import 'package:story_spark/view/widgets/custom_card_widget.dart';
@@ -203,7 +204,7 @@ class _HomeState extends State<Home> {
                           children: [
                             GestureDetector(
                               onTap: () {
-                                Get.to(() => AiSuggested());
+                                Get.to(() => GenerateBook());
                               },
                               child: Container(
                                 padding: EdgeInsets.symmetric(

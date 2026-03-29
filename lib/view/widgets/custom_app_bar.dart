@@ -13,12 +13,14 @@ AppBar simpleAppBar({
   bool? centerTitle = true,
   List<Widget>? actions,
   Color? bgColor,
+  double? titleSpacing,
   Color? contentColor,
   VoidCallback? onLeadingTap,
 }) {
   return AppBar(
     backgroundColor: bgColor ?? Colors.transparent,
     centerTitle: centerTitle,
+    titleSpacing: titleSpacing ?? null,
     automaticallyImplyLeading: false,
     leading: haveLeading
         ? leadingWidget ??

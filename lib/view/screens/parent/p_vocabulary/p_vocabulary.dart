@@ -4,7 +4,7 @@ import 'package:story_spark/constants/app_fonts.dart';
 import 'package:story_spark/constants/app_images.dart';
 import 'package:story_spark/constants/app_sizes.dart';
 import 'package:story_spark/view/screens/ai_suggested/ai_suggested.dart';
-import 'package:story_spark/view/screens/child/vocabulary/reading_logs.dart';
+import 'package:story_spark/view/screens/parent/p_readling_logs/p_reading_logs.dart';
 import 'package:story_spark/view/widgets/custom_app_bar.dart';
 import 'package:story_spark/view/widgets/custom_card_widget.dart';
 import 'package:story_spark/view/widgets/custom_container_widget.dart';
@@ -16,14 +16,14 @@ import 'package:get/get.dart';
 import 'package:story_spark/config/theme/theme_controller.dart';
 import 'package:story_spark/view/widgets/story_thumbnail_widget.dart';
 
-class Vocabulary extends StatefulWidget {
-  const Vocabulary({super.key});
+class PVocabulary extends StatefulWidget {
+  const PVocabulary({super.key});
 
   @override
-  State<Vocabulary> createState() => _VocabularyState();
+  State<PVocabulary> createState() => _PVocabularyState();
 }
 
-class _VocabularyState extends State<Vocabulary> {
+class _PVocabularyState extends State<PVocabulary> {
   int _selectedCategoryIndex = 0;
   int _currentIndex = 0;
 
@@ -151,9 +151,7 @@ class _VocabularyState extends State<Vocabulary> {
                   ];
                   final vocab = vocabList[index];
                   return GestureDetector(
-                    onTap: () {
-                      Get.to(() => ReadingLogs());
-                    },
+                    onTap: () {},
                     child: CustomCard(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,

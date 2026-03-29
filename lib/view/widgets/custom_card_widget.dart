@@ -48,3 +48,28 @@ class CustomCard2 extends StatelessWidget {
     });
   }
 }
+
+class CustomCard3 extends StatelessWidget {
+  const CustomCard3({
+    super.key,
+    this.padding,
+    this.radius,
+    required this.child,
+  });
+  final double? padding;
+  final double? radius;
+  final Widget child;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(padding ?? 14),
+      decoration: BoxDecoration(
+        color: kSecondaryColor,
+        border: Border.all(color: kPrimaryColor, width: 1),
+        // color: Color(0xff311B45),
+        borderRadius: BorderRadius.circular(radius ?? 14),
+      ),
+      child: child,
+    );
+  }
+}

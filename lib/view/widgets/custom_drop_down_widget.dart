@@ -83,7 +83,11 @@ class CustomDropDown extends StatelessWidget {
                             : kTertiaryColor,
                       ),
                     ),
-                    Image.asset(Assets.imagesArrowDown, height: 20),
+                    Image.asset(
+                      Assets.imagesDownArrow,
+                      height: 14,
+                      color: kTertiaryColor,
+                    ),
                   ],
                 ),
               ),

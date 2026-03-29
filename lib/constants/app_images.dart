@@ -214,6 +214,10 @@ class Assets {
   /// assets/images/book_reading_icon.png
   static const String imagesBookReadingIcon = "assets/images/book_reading_icon.png";
 
+  /// Assets for imagesBookmark
+  /// assets/images/bookmark.png
+  static const String imagesBookmark = "assets/images/bookmark.png";
+
   /// Assets for imagesBooks
   /// assets/images/books.png
   static const String imagesBooks = "assets/images/books.png";
@@ -1557,6 +1561,10 @@ class Assets {
   /// Assets for imagesSkinTone8
   /// assets/images/skin_tone8.png
   static const String imagesSkinTone8 = "assets/images/skin_tone8.png";
+
+  /// Assets for imagesSpeak
+  /// assets/images/speak.png
+  static const String imagesSpeak = "assets/images/speak.png";
 
   /// Assets for imagesSpeaker
   /// assets/images/speaker.png

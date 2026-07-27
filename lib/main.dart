@@ -19,7 +19,6 @@ String dummyImg =
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // Make the app react to theme changes by observing the controller.
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       debugShowMaterialGrid: false,

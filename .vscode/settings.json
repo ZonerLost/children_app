@@ -1,8 +1,9 @@
 {
-    "cSpell.words": [
-        "balsamiq",
-        "nunito",
-        "satoshi"
-    ],
-    "git.openRepositoryInParentFolders": "never"
+  "cSpell.words": [
+    "balsamiq",
+    "nunito",
+    "satoshi"
+  ],
+  "git.openRepositoryInParentFolders": "never",
+  "dart.flutterSdkPath": ".fvm/versions/3.32.8"
 }
